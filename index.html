@@ -205,6 +205,24 @@
             margin-top: 6px;
         }
 
+        /* ====== GAMBAR DARI GITHUB ====== */
+        .gambar-github {
+            width: 720px;
+            max-width: 100%;
+            margin-top: 20px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: #d6ccc3;
+        }
+
+        .gambar-github img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
         /* responsive */
         @media (max-width: 740px) {
             .frame { border-radius: 20px; }
@@ -219,6 +237,7 @@
             .bawah-foto p { font-size: 14pt; }
             .bawah-foto .arab { font-size: 16pt; }
             .bawah-foto .doa { font-size: 13pt; }
+            .gambar-github { margin-top: 16px; border-radius: 18px; }
         }
 
         @media (max-width: 480px) {
@@ -233,6 +252,7 @@
             .bawah-foto p { font-size: 12pt; }
             .bawah-foto .arab { font-size: 14pt; }
             .bawah-foto .doa { font-size: 11pt; }
+            .gambar-github { margin-top: 12px; border-radius: 14px; }
         }
 
         /* hilangkan efek card pada semua teks di dalam frame */
@@ -305,6 +325,26 @@
         <p style="margin-top:10px; font-size:16pt; font-weight:500; color:#1f3a3f; font-family:'Style Script', cursive;">
             Uswatun Hasanan &amp; Erik Adi Prasetiyo
         </p>
+    </div>
+
+    <!-- ====== GAMBAR DARI FOLDER u/2.jpg (GITHUB) ====== -->
+    <div class="gambar-github">
+        <!-- 
+            GANTI URL DI BAWAH INI DENGAN URL GAMBAR ANDA DI GITHUB.
+            Contoh format: 
+            https://raw.githubusercontent.com/NAMA_USER/NAMA_REPO/main/u/2.jpg
+            atau sesuai struktur repo Anda.
+        -->
+        <img 
+            src="https://raw.githubusercontent.com/NAMA_USER/NAMA_REPO/main/u/2.jpg" 
+            alt="Gambar dari folder u"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        />
+        <div style="display:none; padding:40px 20px; text-align:center; color:#7b6b60; background:#f0ebe6; font-family:'Segoe UI',sans-serif; font-size:14px;">
+            ⚠️ Gambar 2.jpg tidak ditemukan.<br>
+            <span style="font-size:12px;">Pastikan URL GitHub sudah benar.</span>
+        </div>
     </div>
 </div>
 
