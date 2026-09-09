@@ -20,19 +20,52 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #f5efe9;
-            font-family: 'Style Script', cursive;
             padding: 12px;
-            animation: bgWarna 12s ease-in-out infinite alternate;
+            font-family: 'Style Script', cursive;
+            position: relative;
+            /* Background warna-warni dengan gradasi */
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #9b59b6);
+            background-size: 400% 400%;
+            animation: gradasiWarna 10s ease-in-out infinite alternate;
             will-change: background;
         }
 
-        @keyframes bgWarna {
-            0% { background: #f5efe9; }
-            25% { background: #f0e6dc; }
-            50% { background: #faf0e6; }
-            75% { background: #f5e8e0; }
-            100% { background: #efe4da; }
+        @keyframes gradasiWarna {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 0%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Efek bintang berkilau di background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 60% 20%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 80% 60%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(3px 3px at 10% 80%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 90% 10%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 50% 50%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(3px 3px at 70% 90%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 30% 10%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(2px 2px at 95% 50%, rgba(255,255,255,0.6), transparent);
+            background-size: 200px 200px;
+            pointer-events: none;
+            z-index: 0;
+            animation: kilau 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes kilau {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.8; }
         }
 
         .main-wrapper {
@@ -41,6 +74,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         /* ===== FRAME PERTAMA ===== */
@@ -49,10 +84,15 @@
             width: 100%;
             height: auto;
             aspect-ratio: 720 / 1071.61;
-            background: #d6ccc3;
+            background: rgba(255,255,255,0.15);
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.10), 0 6px 18px rgba(0,0,0,0.06);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.15),
+                0 0 0 2px rgba(255,255,255,0.3),
+                inset 0 0 80px rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
         .frame-bg {
@@ -64,7 +104,25 @@
             object-fit: cover;
             display: block;
             pointer-events: none;
-            background: #b8aaa0;
+            background: rgba(0,0,0,0.1);
+            mix-blend-mode: overlay;
+        }
+
+        /* Efek glow di sekitar frame */
+        .frame-utama::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 32px;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #9b59b6);
+            background-size: 300% 300%;
+            animation: gradasiWarna 8s ease-in-out infinite alternate;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.5;
         }
 
         .content {
@@ -93,8 +151,11 @@
             font-size: 12pt;
             line-height: 1.3;
             font-weight: 400;
-            color: #faf5f0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,0,0,0.2);
+            color: #ffffff;
+            text-shadow: 
+                0 2px 20px rgba(0,0,0,0.5),
+                0 0 40px rgba(0,0,0,0.2),
+                0 0 60px rgba(255,255,255,0.1);
             letter-spacing: 0.04em;
             text-align: center;
             padding: 0 16px;
@@ -105,8 +166,10 @@
             font-size: 16pt;
             line-height: 1.3;
             font-weight: 400;
-            color: #faf5f0;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,0,0,0.15);
+            color: #ffffff;
+            text-shadow: 
+                0 2px 20px rgba(0,0,0,0.5),
+                0 0 40px rgba(0,0,0,0.2);
             letter-spacing: 0.02em;
             text-align: center;
             padding: 0 16px;
@@ -130,8 +193,8 @@
         .alamat {
             font-size: 18pt;
             font-weight: 400;
-            color: #faf5f0;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.2);
+            color: #ffffff;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.2);
             text-align: center;
             line-height: 1.3;
             letter-spacing: 0.02em;
@@ -153,15 +216,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: transparent;
-            padding: 0 2px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 4px 14px 8px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
         .cd-number {
             font-size: 20pt;
             font-weight: 400;
-            color: #faf5f0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.15);
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             line-height: 1.2;
             min-width: 48px;
             text-align: center;
@@ -170,8 +237,8 @@
 
         .cd-label {
             font-size: 11pt;
-            color: #faf5f0;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
             letter-spacing: 0.06em;
             background: transparent;
             margin-top: 2px;
@@ -190,9 +257,11 @@
             width: 100%;
             margin-top: 24px;
             padding: 20px 24px 28px;
-            background: transparent !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
+            background: rgba(255,255,255,0.25) !important;
+            backdrop-filter: blur(20px) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
             text-align: center;
             font-family: 'Times New Roman', 'Georgia', serif;
         }
@@ -200,10 +269,11 @@
         .bawah-foto p {
             font-size: 16pt;
             line-height: 1.8;
-            color: #2e241e;
+            color: #1f1a17;
             margin-bottom: 0;
             letter-spacing: 0.02em;
             font-weight: 400;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.3);
         }
 
         .bawah-foto .arab {
@@ -221,16 +291,18 @@
             margin-top: 6px;
         }
 
-        /* ===== LAYER BARU: bg1 + bg2 + ft2 ===== */
+        /* ===== LAYER BARU: bg2 + ft2 (tanpa bg1) ===== */
         .layer-bawah {
             position: relative;
             width: 100%;
             margin-top: 30px;
             overflow: hidden;
             aspect-ratio: 720 / 2108.9;
-            background: #e8e0d8;
-            border-radius: 0 !important;
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px !important;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
             opacity: 0;
             transform: translateY(60px) scale(0.92);
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -240,17 +312,6 @@
         .layer-bawah.visible {
             opacity: 1;
             transform: translateY(0) scale(1);
-        }
-
-        .bg1 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            background: #c4b7aa;
         }
 
         .layer-atas {
@@ -333,21 +394,23 @@
             width: 100%;
             margin-top: 30px;
             padding: 28px 30px 24px;
-            background: linear-gradient(145deg, #fce4e0, #f5c8c0);
+            background: rgba(255,255,255,0.25) !important;
+            backdrop-filter: blur(20px) !important;
             border-radius: 20px !important;
-            box-shadow: 0 8px 30px rgba(180, 60, 50, 0.15);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
             text-align: center;
-            border: 2px solid #dba89e;
+            border: 2px solid rgba(255,255,255,0.3) !important;
         }
 
         .ayat-container .terjemah {
             font-size: 15pt;
             line-height: 2;
-            color: #3d1f1a;
+            color: #1f1a17;
             font-family: 'Times New Roman', 'Georgia', serif;
             text-align: justify;
             padding: 0 8px;
             font-weight: 500;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.2);
         }
 
         .ayat-container .sumber {
@@ -364,9 +427,11 @@
             width: 100%;
             margin-top: 30px;
             padding: 28px 30px 30px;
-            background: transparent !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
+            background: rgba(255,255,255,0.25) !important;
+            backdrop-filter: blur(20px) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
             text-align: center;
             font-family: 'Times New Roman', 'Georgia', serif;
         }
@@ -377,6 +442,7 @@
             color: #1f3a3f;
             line-height: 2;
             margin-bottom: 6px;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.2);
         }
 
         .info-pernikahan p {
@@ -384,6 +450,7 @@
             line-height: 2;
             color: #2e241e;
             margin-bottom: 6px;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.2);
         }
 
         .info-pernikahan .nama-pasangan-info {
@@ -393,18 +460,20 @@
             font-family: 'Style Script', cursive;
             line-height: 1.6;
             margin: 8px 0;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.2);
         }
 
         .info-pernikahan .orang-tua {
             font-size: 13pt;
             color: #4d3d34;
             line-height: 1.8;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.2);
         }
 
         .info-pernikahan .divider {
             width: 60px;
             height: 2px;
-            background: #b8a088;
+            background: rgba(31, 58, 63, 0.3);
             margin: 12px auto;
         }
 
@@ -443,28 +512,278 @@
         .tombol-lokasi a {
             display: inline-block;
             padding: 16px 40px;
-            background: #1f3a3f;
+            background: rgba(31, 58, 63, 0.9);
+            backdrop-filter: blur(10px);
             color: #ffffff;
             font-family: 'Segoe UI', 'Roboto', sans-serif;
             font-size: 16pt;
             font-weight: 600;
             text-decoration: none;
             border-radius: 50px;
-            box-shadow: 0 6px 20px rgba(31, 58, 63, 0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             letter-spacing: 0.04em;
-            border: 2px solid #1f3a3f;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .tombol-lokasi a:hover {
-            background: #2a4f55;
+            background: rgba(42, 79, 85, 0.95);
             transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(31, 58, 63, 0.4);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.3);
         }
 
         .tombol-lokasi a:active {
             transform: translateY(0);
-            box-shadow: 0 4px 12px rgba(31, 58, 63, 0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* ===== COUNTDOWN BAWAH ===== */
+        .countdown-bawah {
+            width: 100%;
+            margin-top: 30px;
+            padding: 20px 16px;
+            background: rgba(255,255,255,0.15) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            text-align: center;
+        }
+
+        .countdown-bawah .countdown-wrap {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: transparent;
+            font-family: 'Style Script', cursive;
+        }
+
+        .countdown-bawah .cd-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 4px 14px 8px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .countdown-bawah .cd-number {
+            font-size: 22pt;
+            font-weight: 500;
+            color: #1f3a3f;
+            text-shadow: 0 2px 8px rgba(255,255,255,0.2);
+            line-height: 1.2;
+            min-width: 54px;
+            text-align: center;
+            background: transparent;
+            padding: 4px 12px;
+        }
+
+        .countdown-bawah .cd-label {
+            font-size: 12pt;
+            color: #4d3d34;
+            letter-spacing: 0.06em;
+            background: transparent;
+            margin-top: 4px;
+        }
+
+        /* ========================================
+           FORM UCAPAN & DAFTAR UCAPAN
+           ======================================== */
+        .ucapan-section {
+            width: 100%;
+            margin-top: 40px;
+            padding: 30px 28px 40px;
+            background: rgba(255,255,255,0.25) !important;
+            backdrop-filter: blur(20px) !important;
+            border-radius: 28px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06) !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+        }
+
+        .ucapan-section .judul-ucapan {
+            font-family: 'Style Script', cursive;
+            font-size: 28pt;
+            color: #1f3a3f;
+            text-align: center;
+            margin-bottom: 8px;
+            text-shadow: 0 1px 8px rgba(255,255,255,0.3);
+        }
+
+        .ucapan-section .sub-judul {
+            font-family: 'Times New Roman', 'Georgia', serif;
+            font-size: 13pt;
+            color: #4d3d34;
+            text-align: center;
+            margin-bottom: 24px;
+            font-style: italic;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.2);
+        }
+
+        /* Form */
+        .form-ucapan {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .form-ucapan input,
+        .form-ucapan textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 16px;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 12pt;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            outline: none;
+            color: #2e241e;
+        }
+
+        .form-ucapan input:focus,
+        .form-ucapan textarea:focus {
+            border-color: #1f3a3f;
+            box-shadow: 0 0 0 4px rgba(31, 58, 63, 0.08);
+            background: rgba(255,255,255,0.8);
+        }
+
+        .form-ucapan textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+        }
+
+        .form-ucapan .btn-kirim-ucapan {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #1f3a3f, #2a4f55);
+            color: #ffffff;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 14pt;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.04em;
+            box-shadow: 0 4px 16px rgba(31, 58, 63, 0.25);
+        }
+
+        .form-ucapan .btn-kirim-ucapan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(31, 58, 63, 0.35);
+            background: linear-gradient(135deg, #2a4f55, #1f3a3f);
+        }
+
+        .form-ucapan .btn-kirim-ucapan:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(31, 58, 63, 0.2);
+        }
+
+        /* Daftar ucapan */
+        .daftar-ucapan {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 10px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .daftar-ucapan::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .daftar-ucapan::-webkit-scrollbar-track {
+            background: rgba(31, 58, 63, 0.05);
+            border-radius: 10px;
+        }
+
+        .daftar-ucapan::-webkit-scrollbar-thumb {
+            background: rgba(31, 58, 63, 0.3);
+            border-radius: 10px;
+        }
+
+        .ucapan-item {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px 20px;
+            border-left: 4px solid #1f3a3f;
+            animation: slideUcapan 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .ucapan-item:hover {
+            background: rgba(255,255,255,0.7);
+            transform: translateX(4px);
+        }
+
+        @keyframes slideUcapan {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .ucapan-item .nama-ucapan {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 13pt;
+            font-weight: 700;
+            color: #1f3a3f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ucapan-item .nama-ucapan .time {
+            font-weight: 400;
+            font-size: 10pt;
+            color: #b8a088;
+        }
+
+        .ucapan-item .isi-ucapan {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 12pt;
+            color: #2e241e;
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        .ucapan-item .badge-tamu {
+            display: inline-block;
+            background: #1f3a3f;
+            color: #ffffff;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 9pt;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .ucapan-empty {
+            text-align: center;
+            padding: 30px 20px;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            color: #b8a088;
+            font-size: 13pt;
+        }
+
+        .ucapan-empty .empty-icon {
+            font-size: 36pt;
+            display: block;
+            margin-bottom: 8px;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -477,6 +796,7 @@
             .cd-number { font-size: 18pt; min-width: 38px; }
             .cd-label { font-size: 10pt; }
             .countdown-wrap { gap: 10px; }
+            .cd-item { padding: 4px 10px 6px; }
             .bawah-foto { padding: 16px 18px 22px; margin-top: 18px; }
             .bawah-foto p { font-size: 14pt; }
             .bawah-foto .arab { font-size: 16pt; }
@@ -495,6 +815,22 @@
             .info-pernikahan .detail-acara { font-size: 12pt; padding: 0 10px; }
             .info-pernikahan .aamiin { font-size: 16pt; }
             .tombol-lokasi a { font-size: 14pt; padding: 14px 30px; }
+            .countdown-bawah { margin-top: 24px; padding: 16px 12px; }
+            .countdown-bawah .cd-number { font-size: 18pt; min-width: 42px; padding: 4px 8px; }
+            .countdown-bawah .cd-label { font-size: 10pt; }
+            .countdown-bawah .cd-item { padding: 4px 10px 6px; }
+            
+            .ucapan-section {
+                padding: 24px 18px 30px;
+                margin-top: 30px;
+            }
+            .ucapan-section .judul-ucapan { font-size: 24pt; }
+            .form-ucapan input,
+            .form-ucapan textarea { font-size: 11pt; padding: 12px 16px; }
+            .form-ucapan .btn-kirim-ucapan { font-size: 13pt; padding: 12px 28px; }
+            .ucapan-item .nama-ucapan { font-size: 12pt; }
+            .ucapan-item .isi-ucapan { font-size: 11pt; }
+            
             @keyframes naikTurun {
                 0% { transform: translateX(-50%) translateY(-6px); }
                 100% { transform: translateX(-50%) translateY(10px); }
@@ -508,6 +844,7 @@
             .cd-number { font-size: 16pt; min-width: 32px; }
             .cd-label { font-size: 9pt; }
             .countdown-wrap { gap: 6px; }
+            .cd-item { padding: 3px 8px 5px; border-radius: 12px; }
             .bottom-block { margin-top: 6px; }
             .bawah-foto { padding: 12px 14px 18px; margin-top: 14px; }
             .bawah-foto p { font-size: 12pt; }
@@ -527,6 +864,28 @@
             .info-pernikahan .detail-acara { font-size: 10.5pt; padding: 0 6px; }
             .info-pernikahan .aamiin { font-size: 14pt; }
             .tombol-lokasi a { font-size: 12pt; padding: 12px 24px; }
+            .countdown-bawah { margin-top: 18px; padding: 12px 8px; }
+            .countdown-bawah .cd-number { font-size: 15pt; min-width: 34px; padding: 3px 6px; }
+            .countdown-bawah .cd-label { font-size: 8pt; }
+            .countdown-bawah .cd-item { padding: 3px 8px 5px; border-radius: 12px; }
+            
+            .ucapan-section {
+                padding: 18px 14px 24px;
+                margin-top: 24px;
+                border-radius: 20px;
+            }
+            .ucapan-section .judul-ucapan { font-size: 20pt; }
+            .ucapan-section .sub-judul { font-size: 11pt; }
+            .form-ucapan input,
+            .form-ucapan textarea { font-size: 10pt; padding: 10px 14px; }
+            .form-ucapan textarea { min-height: 80px; }
+            .form-ucapan .btn-kirim-ucapan { font-size: 11pt; padding: 10px 22px; }
+            .ucapan-item { padding: 12px 14px; }
+            .ucapan-item .nama-ucapan { font-size: 11pt; }
+            .ucapan-item .isi-ucapan { font-size: 10pt; }
+            .ucapan-empty { font-size: 11pt; padding: 20px 14px; }
+            .ucapan-empty .empty-icon { font-size: 28pt; }
+            
             @keyframes naikTurun {
                 0% { transform: translateX(-50%) translateY(-5px); }
                 100% { transform: translateX(-50%) translateY(8px); }
@@ -584,14 +943,8 @@
         </p>
     </div>
 
-    <!-- LAYER BAWAH: bg1 + bg2 + ft2 -->
+    <!-- LAYER BAWAH: bg2 + ft2 (tanpa bg1) -->
     <div class="layer-bawah" id="layerBawah">
-        <img 
-            class="bg1" 
-            src="https://github.com/undangan560-sys/digital/blob/main/U/bg1.jpg?raw=true" 
-            alt="Background layer bawah"
-            loading="lazy"
-        />
         <div class="layer-atas">
             <img 
                 class="gambar2" 
@@ -659,10 +1012,65 @@
             📍 Buka Lokasi di Google Maps
         </a>
     </div>
+
+    <!-- ===== COUNTDOWN BAWAH ===== -->
+    <div class="countdown-bawah">
+        <div class="countdown-wrap" id="countdownBawahContainer">
+            <div class="cd-item">
+                <span class="cd-number" id="cd-days-bawah">00</span>
+                <span class="cd-label">Hari</span>
+            </div>
+            <div class="cd-item">
+                <span class="cd-number" id="cd-hours-bawah">00</span>
+                <span class="cd-label">Jam</span>
+            </div>
+            <div class="cd-item">
+                <span class="cd-number" id="cd-minutes-bawah">00</span>
+                <span class="cd-label">Menit</span>
+            </div>
+            <div class="cd-item">
+                <span class="cd-number" id="cd-seconds-bawah">00</span>
+                <span class="cd-label">Detik</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         FORM UCAPAN & DAFTAR UCAPAN
+         ======================================== -->
+    <div class="ucapan-section">
+        <div class="judul-ucapan">💌 Kirim Ucapan & Doa</div>
+        <div class="sub-judul">"Sampaikan doa terbaik untuk pasangan pengantin"</div>
+        
+        <!-- Form -->
+        <form class="form-ucapan" id="formUcapan">
+            <input 
+                type="text" 
+                id="namaTamu" 
+                placeholder="Nama Anda..." 
+                required
+                autocomplete="name"
+            />
+            <textarea 
+                id="isiUcapan" 
+                placeholder="Tulis ucapan atau doa untuk Uswatun &amp; Erik..." 
+                required
+            ></textarea>
+            <button type="submit" class="btn-kirim-ucapan">
+                ✨ Kirim Ucapan
+            </button>
+        </form>
+        
+        <!-- Daftar ucapan -->
+        <div id="daftarUcapan" class="daftar-ucapan">
+            <!-- Ucapan akan muncul di sini -->
+        </div>
+    </div>
+
 </div>
 
 <script>
-    // ===== COUNTDOWN =====
+    // ===== COUNTDOWN UTAMA & BAWAH =====
     (function() {
         const targetDate = new Date(2026, 8, 19, 13, 0, 0).getTime();
         const daysEl = document.getElementById('cd-days');
@@ -670,16 +1078,22 @@
         const minutesEl = document.getElementById('cd-minutes');
         const secondsEl = document.getElementById('cd-seconds');
 
+        const daysBawah = document.getElementById('cd-days-bawah');
+        const hoursBawah = document.getElementById('cd-hours-bawah');
+        const minutesBawah = document.getElementById('cd-minutes-bawah');
+        const secondsBawah = document.getElementById('cd-seconds-bawah');
+
         function updateCountdown() {
             const now = Date.now();
             let diff = targetDate - now;
+            
             if (diff <= 0) {
-                daysEl.textContent = '00';
-                hoursEl.textContent = '00';
-                minutesEl.textContent = '00';
-                secondsEl.textContent = '00';
+                const reset = ['00', '00', '00', '00'];
+                [daysEl, hoursEl, minutesEl, secondsEl].forEach((el, i) => el.textContent = reset[i]);
+                [daysBawah, hoursBawah, minutesBawah, secondsBawah].forEach((el, i) => el.textContent = reset[i]);
                 return;
             }
+
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             diff -= days * (1000 * 60 * 60 * 24);
             const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -687,11 +1101,23 @@
             const minutes = Math.floor(diff / (1000 * 60));
             diff -= minutes * (1000 * 60);
             const seconds = Math.floor(diff / 1000);
-            daysEl.textContent = String(days).padStart(2, '0');
-            hoursEl.textContent = String(hours).padStart(2, '0');
-            minutesEl.textContent = String(minutes).padStart(2, '0');
-            secondsEl.textContent = String(seconds).padStart(2, '0');
+
+            const d = String(days).padStart(2, '0');
+            const h = String(hours).padStart(2, '0');
+            const m = String(minutes).padStart(2, '0');
+            const s = String(seconds).padStart(2, '0');
+
+            daysEl.textContent = d;
+            hoursEl.textContent = h;
+            minutesEl.textContent = m;
+            secondsEl.textContent = s;
+
+            daysBawah.textContent = d;
+            hoursBawah.textContent = h;
+            minutesBawah.textContent = m;
+            secondsBawah.textContent = s;
         }
+
         updateCountdown();
         setInterval(updateCountdown, 1000);
     })();
@@ -714,6 +1140,116 @@
             
             observer.observe(layerBawah);
         }
+
+        // ===== FORM UCAPAN =====
+        const formUcapan = document.getElementById('formUcapan');
+        const namaTamu = document.getElementById('namaTamu');
+        const isiUcapan = document.getElementById('isiUcapan');
+        const daftarUcapan = document.getElementById('daftarUcapan');
+
+        // Load ucapan dari localStorage
+        function loadUcapan() {
+            const saved = localStorage.getItem('ucapanPernikahan');
+            if (saved) {
+                try {
+                    const ucapanList = JSON.parse(saved);
+                    renderUcapan(ucapanList);
+                } catch (e) {
+                    renderUcapan([]);
+                }
+            } else {
+                // Data default jika belum ada
+                const defaultUcapan = [
+                    {
+                        nama: 'Ahmad Fauzi',
+                        isi: 'Selamat menempuh hidup baru, semoga selalu dalam kebahagiaan dan keberkahan. Aamiin.',
+                        waktu: new Date().toLocaleString('id-ID')
+                    },
+                    {
+                        nama: 'Siti Rahma',
+                        isi: 'Barakallah, semoga menjadi keluarga sakinah mawaddah warahmah. Sukses selalu!',
+                        waktu: new Date().toLocaleString('id-ID')
+                    }
+                ];
+                localStorage.setItem('ucapanPernikahan', JSON.stringify(defaultUcapan));
+                renderUcapan(defaultUcapan);
+            }
+        }
+
+        // Render ucapan
+        function renderUcapan(ucapanList) {
+            if (!ucapanList || ucapanList.length === 0) {
+                daftarUcapan.innerHTML = `
+                    <div class="ucapan-empty">
+                        <span class="empty-icon">💭</span>
+                        Belum ada ucapan. Jadilah yang pertama!
+                    </div>
+                `;
+                return;
+            }
+
+            // Tampilkan terbaru di atas
+            const reversed = [...ucapanList].reverse();
+            daftarUcapan.innerHTML = reversed.map((ucapan, index) => {
+                // Ambil inisial untuk badge
+                const inisial = ucapan.nama.charAt(0).toUpperCase();
+                return `
+                    <div class="ucapan-item" style="animation-delay: ${index * 0.05}s">
+                        <div class="nama-ucapan">
+                            <span class="badge-tamu">${inisial}</span>
+                            ${ucapan.nama}
+                            <span class="time">• ${ucapan.waktu || 'Baru saja'}</span>
+                        </div>
+                        <div class="isi-ucapan">${ucapan.isi}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Kirim ucapan
+        formUcapan.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nama = namaTamu.value.trim();
+            const isi = isiUcapan.value.trim();
+            
+            if (!nama || !isi) {
+                alert('Silakan isi nama dan ucapan Anda.');
+                return;
+            }
+
+            // Simpan ke localStorage
+            const saved = localStorage.getItem('ucapanPernikahan');
+            let ucapanList = saved ? JSON.parse(saved) : [];
+            
+            const newUcapan = {
+                nama: nama,
+                isi: isi,
+                waktu: new Date().toLocaleString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            };
+            
+            ucapanList.push(newUcapan);
+            localStorage.setItem('ucapanPernikahan', JSON.stringify(ucapanList));
+            
+            // Render ulang
+            renderUcapan(ucapanList);
+            
+            // Reset form
+            namaTamu.value = '';
+            isiUcapan.value = '';
+            
+            // Scroll ke daftar ucapan
+            daftarUcapan.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // Load ucapan saat halaman dimuat
+        loadUcapan();
     });
 </script>
 
