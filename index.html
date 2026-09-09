@@ -50,7 +50,6 @@
             align-items: center;
             position: relative;
             z-index: 1;
-            /* JARAK ANTAR CARD */
             gap: 32px;
             padding: 0 4px;
         }
@@ -451,7 +450,7 @@
         }
 
         /* ========================================
-           BAWAH FOTO (CARD DOA)
+           BAWAH FOTO (CARD DOA) - UKURAN SERAGAM
            ======================================== */
         .bawah-foto {
             width: 100%;
@@ -464,17 +463,21 @@
             font-family: 'Times New Roman', 'Georgia', serif;
         }
 
-        .bawah-foto p {
-            font-size: 14pt;
-            line-height: 1.6;
+        /* UKURAN SERAGAM UNTUK SEMUA TEKS UTAMA */
+        .bawah-foto p,
+        .ayat-container .terjemah,
+        .info-pernikahan .judul-info,
+        .info-pernikahan p,
+        .info-pernikahan .detail-acara,
+        .info-pernikahan .orang-tua {
+            font-size: 14pt !important;
+            line-height: 1.8 !important;
             color: #1f1a17;
-            margin-bottom: 0;
-            letter-spacing: 0.02em;
-            font-weight: 400;
+            margin-bottom: 4px;
         }
 
         .bawah-foto .arab {
-            font-size: 16pt;
+            font-size: 18pt;
             font-weight: 500;
             color: #1f3a3f;
             margin-bottom: 6px;
@@ -709,14 +712,11 @@
         }
 
         .ayat-container .terjemah {
-            font-size: 13pt;
-            line-height: 1.8;
-            color: #1f1a17;
-            font-family: 'Times New Roman', 'Georgia', serif;
             text-align: justify;
             padding: 0 4px;
             font-weight: 500;
             min-height: 100px;
+            font-family: 'Times New Roman', 'Georgia', serif;
         }
 
         .ayat-container .sumber {
@@ -736,6 +736,94 @@
 
         .ayat-container .sumber.hidden {
             opacity: 0;
+        }
+
+        /* ========================================
+           INFORMASI PERNIKAHAN
+           ======================================== */
+        .info-pernikahan {
+            width: 100%;
+            padding: 24px 26px 26px;
+            background: rgba(255,255,255,0.3) !important;
+            border-radius: 18px !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            text-align: center;
+            font-family: 'Times New Roman', 'Georgia', serif;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .info-pernikahan.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .info-pernikahan .judul-info {
+            font-weight: 600;
+            color: #1f3a3f;
+            line-height: 1.8;
+            margin-bottom: 4px;
+            min-height: 50px;
+        }
+
+        .info-pernikahan p {
+            color: #2e241e;
+            margin-bottom: 4px;
+            min-height: 40px;
+        }
+
+        .info-pernikahan .nama-pasangan-info {
+            font-size: 16pt;
+            font-weight: 600;
+            color: #1f3a3f;
+            font-family: 'Style Script', cursive;
+            line-height: 1.6;
+            margin: 6px 0;
+            min-height: 40px;
+        }
+
+        .info-pernikahan .orang-tua {
+            color: #4d3d34;
+            line-height: 1.8;
+            min-height: 35px;
+            font-family: 'Times New Roman', 'Georgia', serif;
+        }
+
+        .info-pernikahan .divider {
+            width: 40px;
+            height: 2px;
+            background: rgba(31, 58, 63, 0.2);
+            margin: 10px auto;
+        }
+
+        .info-pernikahan .detail-acara {
+            text-align: center;
+            padding: 0 10px;
+            color: #2e241e;
+            min-height: 150px;
+            font-family: 'Times New Roman', 'Georgia', serif;
+        }
+
+        .info-pernikahan .detail-acara strong {
+            color: #1f3a3f;
+            font-weight: 600;
+        }
+
+        .info-pernikahan .aamiin-wrapper {
+            min-height: 40px;
+            margin-top: 10px;
+        }
+
+        .info-pernikahan .aamiin {
+            font-size: 20pt;
+            font-weight: 700;
+            font-family: 'Style Script', cursive;
+            background: linear-gradient(135deg, #1f3a3f, #4d7a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* ========================================
@@ -1063,98 +1151,6 @@
         }
 
         /* ========================================
-           INFORMASI PERNIKAHAN
-           ======================================== */
-        .info-pernikahan {
-            width: 100%;
-            padding: 24px 26px 26px;
-            background: rgba(255,255,255,0.3) !important;
-            border-radius: 18px !important;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
-            text-align: center;
-            font-family: 'Times New Roman', 'Georgia', serif;
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .info-pernikahan.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .info-pernikahan .judul-info {
-            font-size: 14pt;
-            font-weight: 600;
-            color: #1f3a3f;
-            line-height: 1.8;
-            margin-bottom: 4px;
-            min-height: 50px;
-        }
-
-        .info-pernikahan p {
-            font-size: 12pt;
-            line-height: 1.8;
-            color: #2e241e;
-            margin-bottom: 4px;
-            min-height: 40px;
-        }
-
-        .info-pernikahan .nama-pasangan-info {
-            font-size: 16pt;
-            font-weight: 600;
-            color: #1f3a3f;
-            font-family: 'Style Script', cursive;
-            line-height: 1.6;
-            margin: 6px 0;
-            min-height: 40px;
-        }
-
-        .info-pernikahan .orang-tua {
-            font-size: 11pt;
-            color: #4d3d34;
-            line-height: 1.8;
-            min-height: 35px;
-        }
-
-        .info-pernikahan .divider {
-            width: 40px;
-            height: 2px;
-            background: rgba(31, 58, 63, 0.2);
-            margin: 10px auto;
-        }
-
-        .info-pernikahan .detail-acara {
-            text-align: center;
-            padding: 0 10px;
-            font-size: 12pt;
-            line-height: 2;
-            color: #2e241e;
-            min-height: 150px;
-        }
-
-        .info-pernikahan .detail-acara strong {
-            color: #1f3a3f;
-            font-weight: 600;
-        }
-
-        .info-pernikahan .aamiin-wrapper {
-            min-height: 40px;
-            margin-top: 10px;
-        }
-
-        .info-pernikahan .aamiin {
-            font-size: 20pt;
-            font-weight: 700;
-            font-family: 'Style Script', cursive;
-            background: linear-gradient(135deg, #1f3a3f, #4d7a8a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* ========================================
            COUNTDOWN BAWAH
            ======================================== */
         .countdown-bawah {
@@ -1385,8 +1381,17 @@
             .bottom-block { margin-top: 4px; }
             
             .bawah-foto { padding: 16px 18px 20px; border-radius: 16px; }
-            .bawah-foto p { font-size: 12pt; }
-            .bawah-foto .arab { font-size: 14pt; }
+            .bawah-foto .arab { font-size: 16pt; }
+            
+            /* Responsive ukuran seragam */
+            .bawah-foto p,
+            .ayat-container .terjemah,
+            .info-pernikahan .judul-info,
+            .info-pernikahan p,
+            .info-pernikahan .detail-acara,
+            .info-pernikahan .orang-tua {
+                font-size: 13pt !important;
+            }
             
             .layer-bawah { border-radius: 16px; }
             .gambar2 { top: 30px; max-width: 85%; }
@@ -1405,15 +1410,10 @@
             }
             
             .ayat-container { padding: 18px 18px 18px; border-radius: 16px; }
-            .ayat-container .terjemah { font-size: 11pt; min-height: 80px; }
             .ayat-container .sumber { font-size: 10pt; }
             
             .info-pernikahan { padding: 20px 18px 22px; border-radius: 16px; }
-            .info-pernikahan .judul-info { font-size: 12pt; min-height: 40px; }
-            .info-pernikahan p { font-size: 11pt; min-height: 35px; }
             .info-pernikahan .nama-pasangan-info { font-size: 14pt; min-height: 35px; }
-            .info-pernikahan .orang-tua { font-size: 10pt; min-height: 30px; }
-            .info-pernikahan .detail-acara { font-size: 11pt; padding: 0 6px; min-height: 120px; }
             .info-pernikahan .aamiin { font-size: 18pt; }
             
             .tombol-lokasi a { font-size: 12pt; padding: 14px 20px; border-radius: 16px; }
@@ -1475,8 +1475,17 @@
             .bottom-block { margin-top: 2px; }
             
             .bawah-foto { padding: 12px 14px 16px; border-radius: 14px; }
-            .bawah-foto p { font-size: 10pt; }
-            .bawah-foto .arab { font-size: 12pt; }
+            .bawah-foto .arab { font-size: 14pt; }
+            
+            /* Responsive ukuran seragam untuk HP */
+            .bawah-foto p,
+            .ayat-container .terjemah,
+            .info-pernikahan .judul-info,
+            .info-pernikahan p,
+            .info-pernikahan .detail-acara,
+            .info-pernikahan .orang-tua {
+                font-size: 12pt !important;
+            }
             
             .layer-bawah { border-radius: 14px; }
             .gambar2 { top: 20px; max-width: 80%; }
@@ -1495,15 +1504,10 @@
             }
             
             .ayat-container { padding: 14px 14px 16px; border-radius: 14px; }
-            .ayat-container .terjemah { font-size: 10pt; min-height: 70px; }
             .ayat-container .sumber { font-size: 9pt; }
             
             .info-pernikahan { padding: 16px 14px 18px; border-radius: 14px; }
-            .info-pernikahan .judul-info { font-size: 11pt; min-height: 35px; }
-            .info-pernikahan p { font-size: 10pt; min-height: 30px; }
             .info-pernikahan .nama-pasangan-info { font-size: 12pt; min-height: 30px; }
-            .info-pernikahan .orang-tua { font-size: 9pt; min-height: 25px; }
-            .info-pernikahan .detail-acara { font-size: 10pt; padding: 0 4px; min-height: 100px; }
             .info-pernikahan .aamiin { font-size: 16pt; }
             .info-pernikahan .divider { width: 30px; margin: 8px auto; }
             
@@ -1617,11 +1621,11 @@
 
     <!-- TEKS DOA 2 -->
     <div class="bawah-foto scroll-reveal-left delay-2" id="doa2">
-        <p style="margin-top:8px; font-size:13pt; line-height:1.6;">
+        <p style="margin-top:8px; line-height:1.8;">
             Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. 
             Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami:
         </p>
-        <p style="margin-top:6px; font-size:14pt; font-weight:500; color:#1f3a3f; font-family:'Style Script', cursive;">
+        <p style="margin-top:6px; font-weight:500; color:#1f3a3f; font-family:'Style Script', cursive; font-size:16pt;">
             Uswatun Hasanan &amp; Erik Adi Prasetiyo
         </p>
     </div>
@@ -1699,7 +1703,7 @@
         
         <div class="divider"></div>
         
-        <p style="font-size:12pt; font-weight:500; color:#1f3a3f; margin-top:4px;">
+        <p style="font-weight:500; color:#1f3a3f; margin-top:4px;">
             <span class="typing-container">
                 <span class="typing-text" id="typing5"></span>
             </span>
@@ -1713,7 +1717,7 @@
         
         <div class="divider"></div>
         
-        <p style="font-size:13pt; color:#2e241e; line-height:1.8;">
+        <p style="line-height:1.8;">
             <span class="typing-container">
                 <span class="typing-text" id="typing7"></span>
             </span>
