@@ -22,13 +22,25 @@
             padding: 8px;
             font-family: 'Style Script', cursive;
             position: relative;
-            /* Sederhanakan background - hanya 2 warna untuk mengurangi beban */
-            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77);
+            background-size: 300% 300%;
+            animation: gradasiLambat 20s ease-in-out infinite alternate;
             overflow-x: hidden;
+            will-change: background-position;
         }
 
-        /* HAPUS animasi gradasi berat */
-        /* HAPUS efek kilau bintang-bintang */
+        @keyframes gradasiLambat {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body {
+                animation: none;
+                background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            }
+        }
 
         .main-wrapper {
             width: 720px;
@@ -38,10 +50,13 @@
             align-items: center;
             position: relative;
             z-index: 1;
+            /* JARAK ANTAR CARD */
+            gap: 32px;
+            padding: 0 4px;
         }
 
         /* ========================================
-           OPTIMASI - Kurangi animasi masuk
+           SCROLL REVEAL
            ======================================== */
         .scroll-reveal-bottom {
             opacity: 0;
@@ -139,7 +154,7 @@
         .delay-10 { transition-delay: 0.5s; }
 
         /* ========================================
-           OPTIMASI TYPING - Lebih cepat dan ringan
+           TYPING
            ======================================== */
         .typing-container {
             display: inline-block;
@@ -180,7 +195,7 @@
         }
 
         /* ========================================
-           ANIMASI SLIDE
+           SLIDE
            ======================================== */
         .slide-right {
             opacity: 0;
@@ -205,7 +220,7 @@
         }
 
         /* ========================================
-           ANIMASI UNTUK NAMA
+           NAMA ANIMASI
            ======================================== */
         .nama-animasi {
             opacity: 0;
@@ -219,7 +234,7 @@
         }
 
         /* ========================================
-           ANIMASI TYPING UNTUK AAMIIN
+           AAMIIN
            ======================================== */
         .aamiin-typing {
             display: inline-block;
@@ -255,7 +270,7 @@
             }
         }
 
-        /* ===== FRAME PERTAMA ===== */
+        /* ===== FRAME UTAMA ===== */
         .frame-utama {
             position: relative;
             width: 100%;
@@ -282,11 +297,6 @@
                 opacity: 1;
                 transform: translateY(0) scale(1);
             }
-        }
-
-        /* HAPUS efek glow border yang berat */
-        .frame-utama::before {
-            display: none;
         }
 
         .frame-bg {
@@ -333,7 +343,6 @@
             pointer-events: none;
             font-family: 'Style Script', cursive;
             z-index: 2;
-            /* HAPUS animasi goyang untuk menghemat CPU */
         }
 
         .the-wedding {
@@ -442,19 +451,17 @@
         }
 
         /* ========================================
-           OPTIMASI - Kurangi efek blur & glassmorphism
+           BAWAH FOTO (CARD DOA)
            ======================================== */
         .bawah-foto {
             width: 100%;
-            margin-top: 18px;
-            padding: 16px 20px 20px;
+            padding: 20px 24px 24px;
             background: rgba(255,255,255,0.3) !important;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             border: 1px solid rgba(255,255,255,0.2) !important;
             text-align: center;
             font-family: 'Times New Roman', 'Georgia', serif;
-            /* HAPUS backdrop-filter */
         }
 
         .bawah-foto p {
@@ -474,18 +481,18 @@
             line-height: 1.6;
         }
 
-        /* LAYER DEKORASI */
+        /* ========================================
+           LAYER DEKORASI
+           ======================================== */
         .layer-bawah {
             position: relative;
             width: 100%;
-            margin-top: 20px;
             overflow: hidden;
             aspect-ratio: 720 / 2108.9;
             background: rgba(255,255,255,0.15);
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             border: 1px solid rgba(255,255,255,0.15);
-            /* HAPUS backdrop-filter */
             opacity: 0;
             transform: translateY(40px) scale(0.95);
             transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -680,14 +687,13 @@
         }
 
         /* ========================================
-           AYAT - OPTIMASI
+           AYAT
            ======================================== */
         .ayat-container {
             width: 100%;
-            margin-top: 20px;
-            padding: 20px 22px 18px;
+            padding: 24px 26px 22px;
             background: rgba(255,255,255,0.3) !important;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.2) !important;
@@ -695,7 +701,6 @@
             transform: translateY(50px);
             transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
             will-change: transform, opacity;
-            /* HAPUS backdrop-filter */
         }
 
         .ayat-container.visible {
@@ -734,13 +739,10 @@
         }
 
         /* ========================================
-           TOMBOL - OPTIMASI
+           TOMBOL LOKASI
            ======================================== */
-        
-        /* Tombol Lokasi - Headshake (lebih ringan) */
         .tombol-lokasi {
             width: 100%;
-            margin-top: 16px;
             text-align: center;
         }
 
@@ -749,7 +751,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 14px 28px;
+            padding: 16px 28px;
             width: 100%;
             background: rgba(255,255,255,0.3) !important;
             color: #1f3a3f;
@@ -757,12 +759,11 @@
             font-size: 14pt;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             border: 1px solid rgba(255,255,255,0.25) !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             transition: all 0.3s ease;
             letter-spacing: 0.04em;
-            /* HAPUS backdrop-filter */
             animation: headshake 2.5s ease-in-out infinite;
             transform-origin: center;
         }
@@ -791,9 +792,11 @@
             animation-play-state: paused;
         }
 
-        /* Tombol Kirim Ucapan - Heartbeat (lebih ringan) */
+        /* ========================================
+           TOMBOL KIRIM UCAPAN
+           ======================================== */
         .form-ucapan .btn-kirim-ucapan {
-            padding: 14px 28px;
+            padding: 16px 28px;
             width: 100%;
             background: rgba(255,255,255,0.3) !important;
             color: #1f3a3f;
@@ -801,12 +804,11 @@
             font-size: 14pt;
             font-weight: 600;
             border: 1px solid rgba(255,255,255,0.25) !important;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             cursor: pointer;
             transition: all 0.3s ease;
             letter-spacing: 0.04em;
-            /* HAPUS backdrop-filter */
             animation: heartbeat 1.8s ease-in-out infinite;
         }
 
@@ -831,17 +833,17 @@
             animation-play-state: paused;
         }
 
-        /* Tombol Kirim Hadiah - Zoom In (lebih ringan) */
+        /* ========================================
+           TOMBOL KIRIM HADIAH
+           ======================================== */
         .hadiah-section {
             width: 100%;
-            margin-top: 20px;
-            padding: 18px 20px 22px;
+            padding: 22px 24px 26px;
             background: rgba(255,255,255,0.3) !important;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             border: 1px solid rgba(255,255,255,0.2) !important;
             text-align: center;
-            /* HAPUS backdrop-filter */
         }
 
         .hadiah-section .judul-hadiah {
@@ -855,7 +857,7 @@
             font-family: 'Times New Roman', 'Georgia', serif;
             font-size: 11pt;
             color: #4d3d34;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             font-style: italic;
         }
 
@@ -864,7 +866,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 14px 28px;
+            padding: 16px 28px;
             width: 100%;
             background: rgba(255,255,255,0.3) !important;
             color: #1f3a3f;
@@ -872,14 +874,13 @@
             font-size: 14pt;
             font-weight: 600;
             border: 1px solid rgba(255,255,255,0.25) !important;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             cursor: pointer;
             transition: all 0.3s ease;
             letter-spacing: 0.04em;
             position: relative;
             overflow: hidden;
-            /* HAPUS backdrop-filter */
             animation: zoomInOut 2.5s ease-in-out infinite;
         }
 
@@ -942,20 +943,19 @@
         }
 
         .card-hadiah-container.active {
-            margin-top: 16px;
+            margin-top: 18px;
             max-height: 600px;
             opacity: 1;
         }
 
         .card-hadiah {
             width: 100%;
-            padding: 20px 20px 24px;
+            padding: 22px 24px 26px;
             background: rgba(255,255,255,0.3) !important;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             border: 1px solid rgba(255,255,255,0.2) !important;
             text-align: center;
-            /* HAPUS backdrop-filter */
             animation: cardSlideDown 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -981,15 +981,15 @@
             font-family: 'Times New Roman', 'Georgia', serif;
             font-size: 11pt;
             color: #4d3d34;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             font-style: italic;
         }
 
         .card-hadiah .info-rekening {
             background: rgba(255,255,255,0.3);
-            border-radius: 12px;
-            padding: 12px 16px;
-            margin-bottom: 12px;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 14px;
             border: 1px solid rgba(255,255,255,0.15);
             text-align: left;
         }
@@ -1031,7 +1031,7 @@
 
         .card-hadiah .info-rekening .copy-rek {
             display: inline-block;
-            margin-top: 6px;
+            margin-top: 8px;
             padding: 4px 16px;
             background: rgba(255,255,255,0.3);
             border-radius: 30px;
@@ -1063,14 +1063,13 @@
         }
 
         /* ========================================
-           INFORMASI PERNIKAHAN - OPTIMASI
+           INFORMASI PERNIKAHAN
            ======================================== */
         .info-pernikahan {
             width: 100%;
-            margin-top: 20px;
-            padding: 20px 22px 22px;
+            padding: 24px 26px 26px;
             background: rgba(255,255,255,0.3) !important;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             border: 1px solid rgba(255,255,255,0.2) !important;
             text-align: center;
@@ -1078,7 +1077,6 @@
             opacity: 0;
             transform: translateY(40px) scale(0.95);
             transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-            /* HAPUS backdrop-filter */
         }
 
         .info-pernikahan.visible {
@@ -1124,7 +1122,7 @@
             width: 40px;
             height: 2px;
             background: rgba(31, 58, 63, 0.2);
-            margin: 8px auto;
+            margin: 10px auto;
         }
 
         .info-pernikahan .detail-acara {
@@ -1143,7 +1141,7 @@
 
         .info-pernikahan .aamiin-wrapper {
             min-height: 40px;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .info-pernikahan .aamiin {
@@ -1161,19 +1159,17 @@
            ======================================== */
         .countdown-bawah {
             width: 100%;
-            margin-top: 20px;
-            padding: 14px 12px;
+            padding: 18px 14px;
             background: rgba(255,255,255,0.2) !important;
-            border-radius: 16px !important;
+            border-radius: 18px !important;
             box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
             border: 1px solid rgba(255,255,255,0.15) !important;
             text-align: center;
-            /* HAPUS backdrop-filter */
         }
 
         .countdown-bawah .countdown-wrap {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
             background: transparent;
@@ -1185,7 +1181,7 @@
             flex-direction: column;
             align-items: center;
             background: rgba(255,255,255,0.1);
-            padding: 2px 10px 4px;
+            padding: 4px 12px 6px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.1);
         }
@@ -1210,17 +1206,15 @@
         }
 
         /* ========================================
-           UCAPAN SECTION - OPTIMASI
+           UCAPAN SECTION
            ======================================== */
         .ucapan-section {
             width: 100%;
-            margin-top: 20px;
-            padding: 22px 20px 30px;
+            padding: 26px 24px 34px;
             background: rgba(255,255,255,0.3) !important;
             border-radius: 20px !important;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
             border: 1px solid rgba(255,255,255,0.2) !important;
-            /* HAPUS backdrop-filter */
         }
 
         .ucapan-section .judul-ucapan {
@@ -1236,23 +1230,23 @@
             font-size: 11pt;
             color: #4d3d34;
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             font-style: italic;
         }
 
         .form-ucapan {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 24px;
         }
 
         .form-ucapan input,
         .form-ucapan textarea {
             width: 100%;
-            padding: 10px 14px;
+            padding: 12px 16px;
             border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 12px;
+            border-radius: 14px;
             font-family: 'Segoe UI', 'Roboto', sans-serif;
             font-size: 11pt;
             background: rgba(255,255,255,0.5);
@@ -1277,8 +1271,8 @@
         .daftar-ucapan {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 8px;
+            gap: 14px;
+            margin-top: 10px;
             max-height: 400px;
             overflow-y: auto;
             padding-right: 4px;
@@ -1300,8 +1294,8 @@
 
         .ucapan-item {
             background: rgba(255,255,255,0.4);
-            border-radius: 12px;
-            padding: 12px 16px;
+            border-radius: 14px;
+            padding: 14px 18px;
             border-left: 4px solid #1f3a3f;
             animation: slideUcapan 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             transition: all 0.3s ease;
@@ -1354,14 +1348,14 @@
             color: #ffffff;
             font-family: 'Segoe UI', 'Roboto', sans-serif;
             font-size: 8pt;
-            padding: 1px 10px;
+            padding: 2px 10px;
             border-radius: 20px;
             font-weight: 500;
         }
 
         .ucapan-empty {
             text-align: center;
-            padding: 20px 16px;
+            padding: 24px 18px;
             font-family: 'Segoe UI', 'Roboto', sans-serif;
             color: #b8a088;
             font-size: 11pt;
@@ -1374,12 +1368,10 @@
         }
 
         /* ========================================
-           RESPONSIVE - OPTIMASI UNTUK PONSEL
+           RESPONSIVE
            ======================================== */
-        
-        /* Default untuk semua layar - lebih ringan */
         @media (max-width: 740px) {
-            body { padding: 6px; }
+            .main-wrapper { gap: 26px; padding: 0 2px; }
             
             .frame-utama { border-radius: 16px; }
             .content { padding-bottom: 20px; }
@@ -1392,11 +1384,11 @@
             .cd-item { padding: 3px 8px 4px; border-radius: 10px; }
             .bottom-block { margin-top: 4px; }
             
-            .bawah-foto { padding: 12px 14px 16px; margin-top: 14px; }
+            .bawah-foto { padding: 16px 18px 20px; border-radius: 16px; }
             .bawah-foto p { font-size: 12pt; }
             .bawah-foto .arab { font-size: 14pt; }
             
-            .layer-bawah { margin-top: 16px; border-radius: 14px; }
+            .layer-bawah { border-radius: 16px; }
             .gambar2 { top: 30px; max-width: 85%; }
             .gambar3 { bottom: 20px; max-width: 85%; }
             
@@ -1412,11 +1404,11 @@
                 font-size: 14pt;
             }
             
-            .ayat-container { padding: 16px 16px 14px; margin-top: 16px; }
+            .ayat-container { padding: 18px 18px 18px; border-radius: 16px; }
             .ayat-container .terjemah { font-size: 11pt; min-height: 80px; }
             .ayat-container .sumber { font-size: 10pt; }
             
-            .info-pernikahan { padding: 16px 14px 18px; margin-top: 16px; }
+            .info-pernikahan { padding: 20px 18px 22px; border-radius: 16px; }
             .info-pernikahan .judul-info { font-size: 12pt; min-height: 40px; }
             .info-pernikahan p { font-size: 11pt; min-height: 35px; }
             .info-pernikahan .nama-pasangan-info { font-size: 14pt; min-height: 35px; }
@@ -1424,22 +1416,22 @@
             .info-pernikahan .detail-acara { font-size: 11pt; padding: 0 6px; min-height: 120px; }
             .info-pernikahan .aamiin { font-size: 18pt; }
             
-            .tombol-lokasi a { font-size: 12pt; padding: 12px 20px; border-radius: 14px; }
-            .tombol-lokasi { margin-top: 14px; }
+            .tombol-lokasi a { font-size: 12pt; padding: 14px 20px; border-radius: 16px; }
             
-            .countdown-bawah { margin-top: 16px; padding: 12px 8px; }
+            .countdown-bawah { padding: 16px 12px; border-radius: 16px; }
             .countdown-bawah .cd-number { font-size: 15pt; min-width: 32px; padding: 2px 6px; }
             .countdown-bawah .cd-label { font-size: 8pt; }
-            .countdown-bawah .cd-item { padding: 2px 8px 4px; border-radius: 10px; }
+            .countdown-bawah .cd-item { padding: 3px 8px 4px; border-radius: 10px; }
             
-            .hadiah-section { padding: 14px 14px 18px; margin-top: 16px; }
+            .hadiah-section { padding: 18px 18px 22px; border-radius: 16px; }
             .hadiah-section .judul-hadiah { font-size: 17pt; }
             .hadiah-section .sub-hadiah { font-size: 10pt; }
-            .tombol-hadiah { padding: 12px 20px; font-size: 12pt; border-radius: 14px; }
+            .tombol-hadiah { padding: 14px 20px; font-size: 12pt; border-radius: 16px; }
             .tombol-hadiah .icon-hadiah { font-size: 16pt; }
             .tombol-hadiah .badge-hadiah { font-size: 7pt; padding: 2px 8px; }
             
-            .card-hadiah { padding: 16px 14px 18px; }
+            .card-hadiah-container.active { margin-top: 16px; }
+            .card-hadiah { padding: 18px 18px 22px; border-radius: 16px; }
             .card-hadiah .judul-card-hadiah { font-size: 17pt; }
             .card-hadiah .info-rekening .bank { font-size: 11pt; }
             .card-hadiah .info-rekening .no-rek { font-size: 13pt; }
@@ -1447,20 +1439,19 @@
             .card-hadiah .terima-kasih { font-size: 14pt; }
             
             .ucapan-section {
-                padding: 18px 14px 22px;
-                margin-top: 16px;
-                border-radius: 16px;
+                padding: 22px 18px 28px;
+                border-radius: 18px;
             }
             .ucapan-section .judul-ucapan { font-size: 18pt; }
             .ucapan-section .sub-judul { font-size: 10pt; }
             .form-ucapan input,
-            .form-ucapan textarea { font-size: 10pt; padding: 8px 12px; }
+            .form-ucapan textarea { font-size: 10pt; padding: 10px 14px; border-radius: 12px; }
             .form-ucapan textarea { min-height: 60px; }
-            .form-ucapan .btn-kirim-ucapan { font-size: 12pt; padding: 12px 20px; border-radius: 14px; }
-            .ucapan-item { padding: 10px 12px; }
+            .form-ucapan .btn-kirim-ucapan { font-size: 12pt; padding: 14px 20px; border-radius: 16px; }
+            .ucapan-item { padding: 12px 14px; border-radius: 12px; }
             .ucapan-item .nama-ucapan { font-size: 10pt; }
             .ucapan-item .isi-ucapan { font-size: 10pt; }
-            .ucapan-empty { font-size: 10pt; padding: 16px 12px; }
+            .ucapan-empty { font-size: 10pt; padding: 18px 14px; }
             .ucapan-empty .empty-icon { font-size: 24pt; }
             
             @keyframes naikTurun {
@@ -1470,7 +1461,7 @@
         }
 
         @media (max-width: 480px) {
-            body { padding: 4px; }
+            .main-wrapper { gap: 20px; }
             
             .frame-utama { border-radius: 12px; }
             .content { padding-bottom: 16px; }
@@ -1483,11 +1474,11 @@
             .cd-item { padding: 2px 6px 3px; border-radius: 8px; }
             .bottom-block { margin-top: 2px; }
             
-            .bawah-foto { padding: 10px 12px 14px; margin-top: 12px; border-radius: 12px; }
+            .bawah-foto { padding: 12px 14px 16px; border-radius: 14px; }
             .bawah-foto p { font-size: 10pt; }
             .bawah-foto .arab { font-size: 12pt; }
             
-            .layer-bawah { margin-top: 12px; border-radius: 12px; }
+            .layer-bawah { border-radius: 14px; }
             .gambar2 { top: 20px; max-width: 80%; }
             .gambar3 { bottom: 14px; max-width: 80%; }
             
@@ -1503,70 +1494,79 @@
                 font-size: 11pt;
             }
             
-            .ayat-container { padding: 12px 12px 12px; margin-top: 12px; border-radius: 12px; }
+            .ayat-container { padding: 14px 14px 16px; border-radius: 14px; }
             .ayat-container .terjemah { font-size: 10pt; min-height: 70px; }
             .ayat-container .sumber { font-size: 9pt; }
             
-            .info-pernikahan { padding: 12px 10px 14px; margin-top: 12px; border-radius: 12px; }
+            .info-pernikahan { padding: 16px 14px 18px; border-radius: 14px; }
             .info-pernikahan .judul-info { font-size: 11pt; min-height: 35px; }
             .info-pernikahan p { font-size: 10pt; min-height: 30px; }
             .info-pernikahan .nama-pasangan-info { font-size: 12pt; min-height: 30px; }
             .info-pernikahan .orang-tua { font-size: 9pt; min-height: 25px; }
             .info-pernikahan .detail-acara { font-size: 10pt; padding: 0 4px; min-height: 100px; }
             .info-pernikahan .aamiin { font-size: 16pt; }
-            .info-pernikahan .divider { width: 30px; margin: 6px auto; }
+            .info-pernikahan .divider { width: 30px; margin: 8px auto; }
             
-            .tombol-lokasi a { font-size: 10pt; padding: 10px 16px; border-radius: 12px; gap: 6px; }
-            .tombol-lokasi { margin-top: 12px; }
+            .tombol-lokasi a { font-size: 10pt; padding: 12px 16px; border-radius: 14px; gap: 6px; }
             
-            .countdown-bawah { margin-top: 12px; padding: 10px 6px; border-radius: 12px; }
+            .countdown-bawah { padding: 14px 10px; border-radius: 14px; }
             .countdown-bawah .cd-number { font-size: 12pt; min-width: 26px; padding: 2px 4px; }
             .countdown-bawah .cd-label { font-size: 7pt; }
             .countdown-bawah .cd-item { padding: 2px 6px 3px; border-radius: 8px; gap: 4px; }
             
-            .hadiah-section { padding: 12px 12px 14px; margin-top: 12px; border-radius: 12px; }
+            .hadiah-section { padding: 14px 14px 18px; border-radius: 14px; }
             .hadiah-section .judul-hadiah { font-size: 14pt; }
-            .hadiah-section .sub-hadiah { font-size: 9pt; margin-bottom: 10px; }
-            .tombol-hadiah { padding: 10px 16px; font-size: 10pt; border-radius: 12px; gap: 6px; }
+            .hadiah-section .sub-hadiah { font-size: 9pt; margin-bottom: 12px; }
+            .tombol-hadiah { padding: 12px 16px; font-size: 10pt; border-radius: 14px; gap: 6px; }
             .tombol-hadiah .icon-hadiah { font-size: 14pt; }
             .tombol-hadiah .badge-hadiah { font-size: 6pt; padding: 1px 6px; top: -3px; right: -3px; }
             
-            .card-hadiah-container.active { margin-top: 12px; }
-            .card-hadiah { padding: 14px 12px 16px; border-radius: 12px; }
+            .card-hadiah-container.active { margin-top: 14px; }
+            .card-hadiah { padding: 16px 14px 18px; border-radius: 14px; }
             .card-hadiah .judul-card-hadiah { font-size: 14pt; }
             .card-hadiah .sub-card-hadiah { font-size: 9pt; }
-            .card-hadiah .info-rekening { padding: 10px 12px; border-radius: 10px; }
+            .card-hadiah .info-rekening { padding: 12px 14px; border-radius: 12px; }
             .card-hadiah .info-rekening .bank { font-size: 10pt; }
             .card-hadiah .info-rekening .no-rek { font-size: 11pt; }
             .card-hadiah .info-rekening .no-rek.sensor { font-size: 10pt; }
             .card-hadiah .info-rekening .nama-rek { font-size: 9pt; }
-            .card-hadiah .info-rekening .copy-rek { font-size: 8pt; padding: 3px 12px; }
+            .card-hadiah .info-rekening .copy-rek { font-size: 8pt; padding: 4px 12px; }
             .card-hadiah .terima-kasih { font-size: 12pt; }
             
             .ucapan-section {
-                padding: 14px 10px 18px;
-                margin-top: 12px;
-                border-radius: 12px;
+                padding: 18px 14px 24px;
+                border-radius: 16px;
             }
             .ucapan-section .judul-ucapan { font-size: 16pt; }
-            .ucapan-section .sub-judul { font-size: 9pt; margin-bottom: 14px; }
-            .form-ucapan { gap: 8px; }
+            .ucapan-section .sub-judul { font-size: 9pt; margin-bottom: 16px; }
+            .form-ucapan { gap: 10px; margin-bottom: 18px; }
             .form-ucapan input,
-            .form-ucapan textarea { font-size: 9pt; padding: 8px 10px; border-radius: 10px; }
+            .form-ucapan textarea { font-size: 9pt; padding: 10px 12px; border-radius: 12px; }
             .form-ucapan textarea { min-height: 50px; }
-            .form-ucapan .btn-kirim-ucapan { font-size: 10pt; padding: 10px 16px; border-radius: 12px; }
-            .ucapan-item { padding: 8px 10px; border-radius: 10px; }
+            .form-ucapan .btn-kirim-ucapan { font-size: 10pt; padding: 12px 16px; border-radius: 14px; }
+            .ucapan-item { padding: 10px 12px; border-radius: 12px; }
             .ucapan-item .nama-ucapan { font-size: 9pt; gap: 4px; }
             .ucapan-item .isi-ucapan { font-size: 9pt; }
             .ucapan-item .badge-tamu { font-size: 7pt; padding: 1px 8px; }
-            .ucapan-empty { font-size: 9pt; padding: 12px 10px; }
+            .ucapan-empty { font-size: 9pt; padding: 16px 12px; }
             .ucapan-empty .empty-icon { font-size: 20pt; }
             
-            .daftar-ucapan { max-height: 300px; gap: 8px; }
+            .daftar-ucapan { max-height: 300px; gap: 10px; }
             
             @keyframes naikTurun {
                 0% { transform: translateX(-50%) translateY(-3px); }
                 100% { transform: translateX(-50%) translateY(5px); }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            body {
+                animation: none !important;
             }
         }
     </style>
@@ -1609,13 +1609,14 @@
         </div>
     </div>
 
-    <!-- TEKS DOA -->
+    <!-- TEKS DOA 1 -->
     <div class="bawah-foto scroll-reveal-bottom delay-1" id="doa1">
         <p class="arab">اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ</p>
         <p>Assalamualaikum Warohmatullohi Wabarokatuh</p>
     </div>
 
-    <div class="bawah-foto scroll-reveal-left delay-2" id="doa2" style="margin-top:12px;">
+    <!-- TEKS DOA 2 -->
+    <div class="bawah-foto scroll-reveal-left delay-2" id="doa2">
         <p style="margin-top:8px; font-size:13pt; line-height:1.6;">
             Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. 
             Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami:
@@ -1651,7 +1652,7 @@
         </div>
     </div>
 
-    <!-- AYAT - TYPING ANIMATION BERULANG -->
+    <!-- AYAT -->
     <div class="ayat-container scroll-reveal-bottom-rotate delay-4" id="ayatContainer">
         <div class="terjemah" id="ayatText">
             <span id="typingText"></span><span class="typing-cursor" id="typingCursor"></span>
@@ -1944,7 +1945,6 @@
             'scroll-reveal-bounce'
         ];
 
-        // Gunakan satu observer saja untuk semua elemen
         const singleObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -2294,7 +2294,6 @@
 
         // ===== REDUCE ANIMATION ON MOBILE =====
         if (window.matchMedia('(max-width: 480px)').matches) {
-            // Kurangi intensitas animasi di ponsel kecil
             document.querySelectorAll('.tombol-lokasi a, .tombol-hadiah, .form-ucapan .btn-kirim-ucapan').forEach(el => {
                 el.style.animationDuration = '3s';
             });
