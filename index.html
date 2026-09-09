@@ -18,18 +18,35 @@
         body {
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             background: #f5efe9;
             font-family: 'Style Script', cursive;
             padding: 12px;
+            animation: bgWarna 12s ease-in-out infinite alternate;
+            will-change: background;
         }
 
-        /* container utama: lebar 720px, proporsi 720:1071.61 */
-        .frame {
-            position: relative;
+        @keyframes bgWarna {
+            0% { background: #f5efe9; }
+            25% { background: #f0e6dc; }
+            50% { background: #faf0e6; }
+            75% { background: #f5e8e0; }
+            100% { background: #efe4da; }
+        }
+
+        .main-wrapper {
             width: 720px;
             max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== FRAME PERTAMA ===== */
+        .frame-utama {
+            position: relative;
+            width: 100%;
             height: auto;
             aspect-ratio: 720 / 1071.61;
             background: #d6ccc3;
@@ -38,7 +55,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.10), 0 6px 18px rgba(0,0,0,0.06);
         }
 
-        /* gambar sebagai background (bukan objek) */
         .frame-bg {
             position: absolute;
             top: 0;
@@ -51,7 +67,6 @@
             background: #b8aaa0;
         }
 
-        /* konten teks di atas background */
         .content {
             position: absolute;
             top: 0;
@@ -61,7 +76,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* padding-top: 730.39px agar "The Wedding" mulai dari posisi itu */
             padding-top: 730.39px;
             pointer-events: none;
             font-family: 'Style Script', cursive;
@@ -75,7 +89,6 @@
             100% { transform: translateY(12px); }
         }
 
-        /* Teks "The Wedding" 12pt */
         .the-wedding {
             font-size: 12pt;
             line-height: 1.3;
@@ -88,7 +101,6 @@
             background: transparent;
         }
 
-        /* Nama pasangan 16pt */
         .nama-pasangan {
             font-size: 16pt;
             line-height: 1.3;
@@ -103,7 +115,6 @@
             margin-top: 2px;
         }
 
-        /* BLOK BAWAH: alamat + countdown */
         .bottom-block {
             margin-top: 12px;
             display: flex;
@@ -116,7 +127,6 @@
             background: transparent;
         }
 
-        /* Alamat: ukuran 18pt */
         .alamat {
             font-size: 18pt;
             font-weight: 400;
@@ -129,7 +139,6 @@
             padding: 0 6px;
         }
 
-        /* Countdown wrapper */
         .countdown-wrap {
             margin-top: 12px;
             display: flex;
@@ -168,15 +177,22 @@
             margin-top: 2px;
         }
 
-        /* ====== BAGIAN BAWAH FOTO (di luar frame) ====== */
+        .content * {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        /* ===== BAGIAN BAWAH FOTO (teks doa) - TANPA CARD ===== */
         .bawah-foto {
-            width: 720px;
-            max-width: 100%;
+            width: 100%;
             margin-top: 24px;
             padding: 20px 24px 28px;
-            background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
             text-align: center;
             font-family: 'Times New Roman', 'Georgia', serif;
         }
@@ -205,27 +221,264 @@
             margin-top: 6px;
         }
 
-        /* ====== GAMBAR DARI GITHUB ====== */
-        .gambar-github {
-            width: 720px;
-            max-width: 100%;
-            margin-top: 20px;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            background: #d6ccc3;
-        }
-
-        .gambar-github img {
-            display: block;
+        /* ===== LAYER BARU: bg1 + bg2 + ft2 ===== */
+        .layer-bawah {
+            position: relative;
             width: 100%;
-            height: auto;
-            object-fit: cover;
+            margin-top: 30px;
+            overflow: hidden;
+            aspect-ratio: 720 / 2108.9;
+            background: #e8e0d8;
+            border-radius: 0 !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            opacity: 0;
+            transform: translateY(60px) scale(0.92);
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* responsive */
+        .layer-bawah.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .bg1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #c4b7aa;
+        }
+
+        .layer-atas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* ===== GAMBAR 2: bg2.png - DI TENGAH ===== */
+        .gambar2 {
+            position: absolute;
+            top: 48.55px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            width: auto;
+            height: auto;
+            max-width: 90%;
+            max-height: calc(100% - 48.55px - 32.12px);
+            object-fit: contain;
+            opacity: 0;
+            animation: 
+                masukKiri 2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards,
+                naikTurun 3.5s ease-in-out 2.5s infinite alternate;
+        }
+
+        /* ===== GAMBAR 3: ft2.png - DI TENGAH ===== */
+        .gambar3 {
+            position: absolute;
+            bottom: 32.12px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            width: auto;
+            height: auto;
+            max-width: 90%;
+            max-height: calc(100% - 48.55px - 32.12px);
+            object-fit: contain;
+            opacity: 0;
+            animation: 
+                masukKanan 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards,
+                naikTurun 3.5s ease-in-out 2.8s infinite alternate;
+        }
+
+        @keyframes masukKiri {
+            0% {
+                opacity: 0;
+                transform: translateX(-150%) translateY(0) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+        }
+
+        @keyframes masukKanan {
+            0% {
+                opacity: 0;
+                transform: translateX(150%) translateY(0) scale(0.8) rotate(-3deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes naikTurun {
+            0% {
+                transform: translateX(-50%) translateY(-8px);
+            }
+            100% {
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        /* ===== AYAT AL-QUR'AN - TANPA CARD ===== */
+        .ayat-container {
+            width: 100%;
+            margin-top: 30px;
+            padding: 28px 30px 24px;
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            text-align: center;
+            border-left: none !important;
+            border-right: none !important;
+        }
+
+        .ayat-container .arab-ayat {
+            font-size: 24pt;
+            font-weight: 500;
+            color: #1f3a3f;
+            line-height: 2;
+            margin-bottom: 14px;
+            font-family: 'Traditional Arabic', 'Amiri', 'Times New Roman', serif;
+        }
+
+        .ayat-container .terjemah {
+            font-size: 15pt;
+            line-height: 2;
+            color: #3d2e27;
+            font-family: 'Times New Roman', 'Georgia', serif;
+            text-align: justify;
+            padding: 0 8px;
+        }
+
+        .ayat-container .sumber {
+            font-size: 14pt;
+            font-weight: 600;
+            color: #6b5a4e;
+            margin-top: 14px;
+            letter-spacing: 0.04em;
+            font-family: 'Times New Roman', 'Georgia', serif;
+        }
+
+        /* ===== TEKS INFORMASI PERNIKAHAN - TANPA CARD ===== */
+        .info-pernikahan {
+            width: 100%;
+            margin-top: 30px;
+            padding: 28px 30px 30px;
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            text-align: center;
+            font-family: 'Times New Roman', 'Georgia', serif;
+        }
+
+        .info-pernikahan .judul-info {
+            font-size: 16pt;
+            font-weight: 600;
+            color: #1f3a3f;
+            line-height: 2;
+            margin-bottom: 6px;
+        }
+
+        .info-pernikahan p {
+            font-size: 14pt;
+            line-height: 2;
+            color: #2e241e;
+            margin-bottom: 6px;
+        }
+
+        .info-pernikahan .nama-pasangan-info {
+            font-size: 18pt;
+            font-weight: 600;
+            color: #1f3a3f;
+            font-family: 'Style Script', cursive;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+
+        .info-pernikahan .orang-tua {
+            font-size: 13pt;
+            color: #4d3d34;
+            line-height: 1.8;
+        }
+
+        .info-pernikahan .divider {
+            width: 60px;
+            height: 2px;
+            background: #b8a088;
+            margin: 12px auto;
+        }
+
+        .info-pernikahan .detail-acara {
+            text-align: left;
+            padding: 0 20px;
+            font-size: 14pt;
+            line-height: 2.2;
+            color: #2e241e;
+        }
+
+        .info-pernikahan .detail-acara strong {
+            color: #1f3a3f;
+            font-weight: 600;
+        }
+
+        .info-pernikahan .aamiin {
+            font-size: 18pt;
+            font-weight: 600;
+            color: #1f3a3f;
+            margin-top: 12px;
+            font-family: 'Style Script', cursive;
+        }
+
+        /* ===== TOMBOL LOKASI - TANPA CARD ===== */
+        .tombol-lokasi {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            background: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .tombol-lokasi a {
+            display: inline-block;
+            padding: 16px 40px;
+            background: #1f3a3f;
+            color: #ffffff;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 16pt;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(31, 58, 63, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 0.04em;
+            border: 2px solid #1f3a3f;
+        }
+
+        .tombol-lokasi a:hover {
+            background: #2a4f55;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(31, 58, 63, 0.4);
+        }
+
+        .tombol-lokasi a:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(31, 58, 63, 0.3);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 740px) {
-            .frame { border-radius: 20px; }
+            .frame-utama { border-radius: 20px; }
             .content { padding-top: 730.39px; }
             .the-wedding { font-size: 12pt; }
             .nama-pasangan { font-size: 16pt; white-space: normal; word-break: break-word; max-width: 90%; }
@@ -237,7 +490,25 @@
             .bawah-foto p { font-size: 14pt; }
             .bawah-foto .arab { font-size: 16pt; }
             .bawah-foto .doa { font-size: 13pt; }
-            .gambar-github { margin-top: 16px; border-radius: 18px; }
+            .layer-bawah { margin-top: 20px; }
+            .gambar2 { top: 30px; max-width: 85%; }
+            .gambar3 { bottom: 20px; max-width: 85%; }
+            .ayat-container { padding: 20px 18px 18px; margin-top: 24px; }
+            .ayat-container .arab-ayat { font-size: 20pt; }
+            .ayat-container .terjemah { font-size: 13pt; }
+            .ayat-container .sumber { font-size: 12pt; }
+            .info-pernikahan { padding: 20px 18px 22px; margin-top: 24px; }
+            .info-pernikahan .judul-info { font-size: 14pt; }
+            .info-pernikahan p { font-size: 12pt; }
+            .info-pernikahan .nama-pasangan-info { font-size: 16pt; }
+            .info-pernikahan .orang-tua { font-size: 11pt; }
+            .info-pernikahan .detail-acara { font-size: 12pt; padding: 0 10px; }
+            .info-pernikahan .aamiin { font-size: 16pt; }
+            .tombol-lokasi a { font-size: 14pt; padding: 14px 30px; }
+            @keyframes naikTurun {
+                0% { transform: translateX(-50%) translateY(-6px); }
+                100% { transform: translateX(-50%) translateY(10px); }
+            }
         }
 
         @media (max-width: 480px) {
@@ -252,44 +523,43 @@
             .bawah-foto p { font-size: 12pt; }
             .bawah-foto .arab { font-size: 14pt; }
             .bawah-foto .doa { font-size: 11pt; }
-            .gambar-github { margin-top: 12px; border-radius: 14px; }
-        }
-
-        /* hilangkan efek card pada semua teks di dalam frame */
-        .content * {
-            background: transparent !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            box-shadow: none !important;
-            border: none !important;
+            .layer-bawah { margin-top: 16px; }
+            .gambar2 { top: 20px; max-width: 80%; }
+            .gambar3 { bottom: 14px; max-width: 80%; }
+            .ayat-container { padding: 16px 14px 16px; margin-top: 18px; }
+            .ayat-container .arab-ayat { font-size: 16pt; }
+            .ayat-container .terjemah { font-size: 11pt; }
+            .ayat-container .sumber { font-size: 10pt; }
+            .info-pernikahan { padding: 16px 12px 18px; margin-top: 18px; }
+            .info-pernikahan .judul-info { font-size: 12pt; }
+            .info-pernikahan p { font-size: 10.5pt; }
+            .info-pernikahan .nama-pasangan-info { font-size: 14pt; }
+            .info-pernikahan .orang-tua { font-size: 10pt; }
+            .info-pernikahan .detail-acara { font-size: 10.5pt; padding: 0 6px; }
+            .info-pernikahan .aamiin { font-size: 14pt; }
+            .tombol-lokasi a { font-size: 12pt; padding: 12px 24px; }
+            @keyframes naikTurun {
+                0% { transform: translateX(-50%) translateY(-5px); }
+                100% { transform: translateX(-50%) translateY(8px); }
+            }
         }
     </style>
 </head>
 <body>
-<div style="display:flex; flex-direction:column; align-items:center; width:100%; max-width:720px;">
-    <!-- FRAME GAMBAR + TEKS DI ATASNYA -->
-    <div class="frame">
-        <!-- GAMBAR BACKGROUND -->
+<div class="main-wrapper">
+    <!-- FRAME UTAMA -->
+    <div class="frame-utama">
         <img 
             class="frame-bg" 
             src="https://priapsikologi.wordpress.com/wp-content/uploads/2026/03/img-20260625-wa0004.jpg.jpeg?w=682&allow_lossy=1" 
             alt="Background pernikahan Uswatun & Erik"
             loading="lazy"
         />
-
-        <!-- KONTEN TEKS (di atas background) -->
         <div class="content">
-            <!-- The Wedding 12pt -->
             <div class="the-wedding">The Wedding</div>
-            <!-- Nama pasangan 16pt -->
             <div class="nama-pasangan">Uswatun Hasanan &amp; Erik Adi Prasetiyo</div>
-
-            <!-- BLOK BAWAH: alamat + countdown -->
             <div class="bottom-block">
-                <!-- Alamat 18pt -->
                 <div class="alamat">Dsn Crewek - ds Pelabuan Rejo Kec. Mantup Kab Lamongan</div>
-
-                <!-- COUNTDOWN (target: 19 September 2026, 13:00) -->
                 <div class="countdown-wrap" id="countdownContainer">
                     <div class="cd-item">
                         <span class="cd-number" id="cd-days">00</span>
@@ -312,12 +582,10 @@
         </div>
     </div>
 
-    <!-- ====== TEKS DI BAWAH FOTO ====== -->
+    <!-- TEKS DOA - TANPA CARD -->
     <div class="bawah-foto">
         <p class="arab">اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ</p>
-        <p>
-            Assalamualaikum Warohmatullohi Wabarokatuh
-        </p>
+        <p>Assalamualaikum Warohmatullohi Wabarokatuh</p>
         <p style="margin-top:12px; font-size:15pt; line-height:1.8;">
             Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. 
             Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami:
@@ -327,32 +595,90 @@
         </p>
     </div>
 
-    <!-- ====== GAMBAR DARI FOLDER u/2.jpg (GITHUB) ====== -->
-    <div class="gambar-github">
-        <!-- 
-            GANTI URL DI BAWAH INI DENGAN URL GAMBAR ANDA DI GITHUB.
-            Contoh format: 
-            https://raw.githubusercontent.com/NAMA_USER/NAMA_REPO/main/u/2.jpg
-            atau sesuai struktur repo Anda.
-        -->
+    <!-- LAYER BAWAH: bg1 + bg2 + ft2 -->
+    <div class="layer-bawah" id="layerBawah">
         <img 
-            src="https://raw.githubusercontent.com/NAMA_USER/NAMA_REPO/main/u/2.jpg" 
-            alt="Gambar dari folder u"
+            class="bg1" 
+            src="https://github.com/undangan560-sys/digital/blob/main/U/bg1.jpg?raw=true" 
+            alt="Background layer bawah"
             loading="lazy"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
         />
-        <div style="display:none; padding:40px 20px; text-align:center; color:#7b6b60; background:#f0ebe6; font-family:'Segoe UI',sans-serif; font-size:14px;">
-            ⚠️ Gambar 2.jpg tidak ditemukan.<br>
-            <span style="font-size:12px;">Pastikan URL GitHub sudah benar.</span>
+        <div class="layer-atas">
+            <img 
+                class="gambar2" 
+                src="https://github.com/undangan560-sys/digital/blob/main/U/bg2.png?raw=true" 
+                alt="Dekorasi kiri"
+                loading="lazy"
+            />
+            <img 
+                class="gambar3" 
+                src="https://github.com/undangan560-sys/digital/blob/main/U/ft2.png?raw=true" 
+                alt="Dekorasi kanan"
+                loading="lazy"
+            />
         </div>
+    </div>
+
+    <!-- ===== AYAT AL-QUR'AN - TANPA CARD ===== -->
+    <div class="ayat-container">
+        <div class="arab-ayat">
+            وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+        </div>
+        <div class="terjemah">
+            "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+        </div>
+        <div class="sumber">
+            — QS. Ar-Rum : 21 —
+        </div>
+    </div>
+
+    <!-- ===== TEKS INFORMASI PERNIKAHAN - TANPA CARD ===== -->
+    <div class="info-pernikahan">
+        <div class="judul-info">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</div>
+        <p>Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan di antara putra-putri kami:</p>
+        
+        <div class="nama-pasangan-info">Uswatun Hasanah</div>
+        <div class="orang-tua">( Putri dari Bapak Supri &amp; Ibu Rufiah — Lamongan )</div>
+        
+        <div style="font-size:18pt; color:#b8a088; margin:4px 0;">&amp;</div>
+        
+        <div class="nama-pasangan-info">Erik Adi Prasetiyo</div>
+        <div class="orang-tua">( Putra dari Bapak Eko Yulianto &amp; Ibu Kumaidah — Gresik )</div>
+        
+        <div class="divider"></div>
+        
+        <p style="font-size:14pt; font-weight:500; color:#1f3a3f; margin-top:6px;">
+            Kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami yang akan diselenggarakan pada:
+        </p>
+        
+        <div class="detail-acara">
+            <strong>Akad Nikah:</strong><br />
+            <strong>Hari</strong> &nbsp; : Sabtu Wage<br />
+            <strong>Tanggal</strong> : 19 September 2026<br />
+            <strong>Waktu</strong> &nbsp; : 13.00 WIB sampai selesai<br />
+            <strong>Tempat</strong> : Dsn Crewek Ds. Pelabuhan Rejo Kec. Mantup Kab. Lamongan
+        </div>
+        
+        <div class="divider"></div>
+        
+        <p style="font-size:15pt; color:#2e241e; line-height:1.8;">
+            Semoga Allah SWT meridhoi dan memberkahi ikatan ini.
+        </p>
+        <div class="aamiin">Aamiin</div>
+    </div>
+
+    <!-- ===== TOMBOL LOKASI - TANPA CARD ===== -->
+    <div class="tombol-lokasi">
+        <a href="https://www.google.com/maps?q=-7.2920226,112.3998134&z=17&hl=id" target="_blank" rel="noopener noreferrer">
+            📍 Buka Lokasi di Google Maps
+        </a>
     </div>
 </div>
 
 <script>
+    // ===== COUNTDOWN =====
     (function() {
-        // TARGET: 19 September 2026 jam 13:00 (WIB / local time)
-        const targetDate = new Date(2026, 8, 19, 13, 0, 0).getTime(); // bulan 8 = September
-
+        const targetDate = new Date(2026, 8, 19, 13, 0, 0).getTime();
         const daysEl = document.getElementById('cd-days');
         const hoursEl = document.getElementById('cd-hours');
         const minutesEl = document.getElementById('cd-minutes');
@@ -361,7 +687,6 @@
         function updateCountdown() {
             const now = Date.now();
             let diff = targetDate - now;
-
             if (diff <= 0) {
                 daysEl.textContent = '00';
                 hoursEl.textContent = '00';
@@ -369,7 +694,6 @@
                 secondsEl.textContent = '00';
                 return;
             }
-
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             diff -= days * (1000 * 60 * 60 * 24);
             const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -377,16 +701,34 @@
             const minutes = Math.floor(diff / (1000 * 60));
             diff -= minutes * (1000 * 60);
             const seconds = Math.floor(diff / 1000);
-
             daysEl.textContent = String(days).padStart(2, '0');
             hoursEl.textContent = String(hours).padStart(2, '0');
             minutesEl.textContent = String(minutes).padStart(2, '0');
             secondsEl.textContent = String(seconds).padStart(2, '0');
         }
-
         updateCountdown();
         setInterval(updateCountdown, 1000);
     })();
+
+    // ===== INTERSECTION OBSERVER UNTUK ANIMASI SCROLL =====
+    document.addEventListener('DOMContentLoaded', function() {
+        const layerBawah = document.getElementById('layerBawah');
+        
+        if (layerBawah) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        layerBawah.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -30px 0px'
+            });
+            
+            observer.observe(layerBawah);
+        }
+    });
 </script>
 
 </body>
