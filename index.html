@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Undangan · Uswatun & Erik</title>
-    <!-- Google Font: Style Script -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap" rel="stylesheet" />
@@ -23,11 +22,11 @@
             padding: 12px;
             font-family: 'Style Script', cursive;
             position: relative;
-            /* Background warna-warni dengan gradasi */
             background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #9b59b6);
             background-size: 400% 400%;
             animation: gradasiWarna 10s ease-in-out infinite alternate;
             will-change: background;
+            overflow-x: hidden;
         }
 
         @keyframes gradasiWarna {
@@ -38,7 +37,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Efek bintang berkilau di background */
         body::before {
             content: '';
             position: fixed;
@@ -78,21 +76,266 @@
             z-index: 1;
         }
 
+        /* ========================================
+           ANIMASI MASUK
+           ======================================== */
+
+        .scroll-reveal-bottom {
+            opacity: 0;
+            transform: translateY(80px) scale(0.9);
+            transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        .scroll-reveal-bottom.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .scroll-reveal-left {
+            opacity: 0;
+            transform: translateX(-120px) scale(0.85) rotate(-3deg);
+            transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        .scroll-reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0) scale(1) rotate(0deg);
+        }
+
+        .scroll-reveal-right {
+            opacity: 0;
+            transform: translateX(120px) scale(0.85) rotate(3deg);
+            transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        .scroll-reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0) scale(1) rotate(0deg);
+        }
+
+        .scroll-reveal-bottom-rotate {
+            opacity: 0;
+            transform: translateY(100px) rotate(-8deg) scale(0.8);
+            transition: all 1.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        .scroll-reveal-bottom-rotate.visible {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg) scale(1);
+        }
+
+        .scroll-reveal-left-bottom {
+            opacity: 0;
+            transform: translate(-80px, 80px) scale(0.85);
+            transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        .scroll-reveal-left-bottom.visible {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        .scroll-reveal-right-bottom {
+            opacity: 0;
+            transform: translate(80px, 80px) scale(0.85);
+            transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        .scroll-reveal-right-bottom.visible {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        .scroll-reveal-bounce {
+            opacity: 0;
+            transform: translateY(120px);
+            transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        .scroll-reveal-bounce.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
+        .delay-7 { transition-delay: 0.7s; }
+        .delay-8 { transition-delay: 0.8s; }
+        .delay-9 { transition-delay: 0.9s; }
+        .delay-10 { transition-delay: 1.0s; }
+
+        /* ========================================
+           ANIMASI TYPING
+           ======================================== */
+        .typing-container {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .typing-text {
+            display: inline;
+            border-right: 3px solid #1f3a3f;
+            padding-right: 2px;
+        }
+
+        .typing-text.done {
+            border-right: none;
+        }
+
+        .typing-text.hidden {
+            opacity: 0;
+        }
+
+        .typing-text .cursor-blink {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: #1f3a3f;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blinkCursor 0.7s step-end infinite;
+        }
+
+        .typing-text .cursor-blink.hidden {
+            display: none;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ========================================
+           ANIMASI SLIDE
+           ======================================== */
+        .slide-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ========================================
+           ANIMASI UNTUK NAMA - FADE + SLIDE UP
+           ======================================== */
+        .nama-animasi {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .nama-animasi.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* ========================================
+           ANIMASI TYPING UNTUK AAMIIN
+           ======================================== */
+        .aamiin-typing {
+            display: inline-block;
+            font-size: 24pt;
+            font-weight: 700;
+            font-family: 'Style Script', cursive;
+            background: linear-gradient(135deg, #1f3a3f, #4d7a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-right: 3px solid #1f3a3f;
+            padding-right: 2px;
+        }
+
+        .aamiin-typing.done {
+            border-right: none;
+            animation: aamiinGlow 3s ease-in-out infinite alternate;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .aamiin-typing.hidden {
+            opacity: 0;
+        }
+
+        @keyframes aamiinGlow {
+            0% {
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+                transform: scale(1);
+            }
+            100% {
+                filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+                transform: scale(1.05);
+            }
+        }
+
         /* ===== FRAME PERTAMA ===== */
         .frame-utama {
             position: relative;
             width: 100%;
             height: auto;
             aspect-ratio: 720 / 1071.61;
-            background: rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.3);
             border-radius: 28px;
             overflow: hidden;
             box-shadow: 
-                0 20px 40px rgba(0,0,0,0.15),
-                0 0 0 2px rgba(255,255,255,0.3),
-                inset 0 0 80px rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.2);
+                0 20px 60px rgba(0,0,0,0.4),
+                0 0 0 3px rgba(255,255,255,0.4),
+                inset 0 0 100px rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.3);
+            opacity: 0;
+            transform: translateY(60px) scale(0.92);
+            animation: frameMasuk 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+        }
+
+        @keyframes frameMasuk {
+            0% {
+                opacity: 0;
+                transform: translateY(60px) scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .frame-utama::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border-radius: 34px;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #9b59b6);
+            background-size: 300% 300%;
+            animation: gradasiWarna 8s ease-in-out infinite alternate;
+            z-index: -1;
+            filter: blur(25px);
+            opacity: 0.8;
         }
 
         .frame-bg {
@@ -104,25 +347,26 @@
             object-fit: cover;
             display: block;
             pointer-events: none;
-            background: rgba(0,0,0,0.1);
-            mix-blend-mode: overlay;
+            background: rgba(0,0,0,0.2);
+            filter: brightness(1.1) contrast(1.05) saturate(1.1);
         }
 
-        /* Efek glow di sekitar frame */
-        .frame-utama::before {
+        .frame-utama::after {
             content: '';
             position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border-radius: 32px;
-            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #9b59b6);
-            background-size: 300% 300%;
-            animation: gradasiWarna 8s ease-in-out infinite alternate;
-            z-index: -1;
-            filter: blur(20px);
-            opacity: 0.5;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.1) 0%,
+                rgba(0,0,0,0.2) 30%,
+                rgba(0,0,0,0.4) 60%,
+                rgba(0,0,0,0.6) 100%
+            );
+            pointer-events: none;
+            z-index: 1;
         }
 
         .content {
@@ -134,48 +378,58 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 730.39px;
+            justify-content: flex-end;
+            padding-bottom: 40px;
             pointer-events: none;
             font-family: 'Style Script', cursive;
+            z-index: 2;
             animation: goyangLembut 3.2s ease-in-out infinite alternate;
             will-change: transform;
             transform-origin: center;
         }
 
         @keyframes goyangLembut {
-            0% { transform: translateY(-6px); }
-            100% { transform: translateY(12px); }
+            0% { transform: translateY(-4px); }
+            100% { transform: translateY(8px); }
         }
 
         .the-wedding {
-            font-size: 12pt;
+            font-size: 14pt;
             line-height: 1.3;
             font-weight: 400;
             color: #ffffff;
             text-shadow: 
-                0 2px 20px rgba(0,0,0,0.5),
-                0 0 40px rgba(0,0,0,0.2),
-                0 0 60px rgba(255,255,255,0.1);
-            letter-spacing: 0.04em;
+                0 4px 30px rgba(0,0,0,0.8),
+                0 0 60px rgba(0,0,0,0.4),
+                0 0 80px rgba(255,215,0,0.15);
+            letter-spacing: 0.08em;
             text-align: center;
             padding: 0 16px;
-            background: transparent;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            padding: 8px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.15);
         }
 
         .nama-pasangan {
-            font-size: 16pt;
+            font-size: 20pt;
             line-height: 1.3;
             font-weight: 400;
             color: #ffffff;
             text-shadow: 
-                0 2px 20px rgba(0,0,0,0.5),
-                0 0 40px rgba(0,0,0,0.2);
-            letter-spacing: 0.02em;
+                0 4px 30px rgba(0,0,0,0.9),
+                0 0 60px rgba(0,0,0,0.5),
+                0 0 100px rgba(255,215,0,0.1);
+            letter-spacing: 0.04em;
             text-align: center;
-            padding: 0 16px;
-            background: transparent;
+            padding: 8px 20px;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(6px);
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.15);
+            margin-top: 6px;
             white-space: nowrap;
-            margin-top: 2px;
         }
 
         .bottom-block {
@@ -194,12 +448,17 @@
             font-size: 18pt;
             font-weight: 400;
             color: #ffffff;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.2);
+            text-shadow: 
+                0 4px 30px rgba(0,0,0,0.8),
+                0 0 60px rgba(0,0,0,0.4);
             text-align: center;
             line-height: 1.3;
             letter-spacing: 0.02em;
-            background: transparent;
-            padding: 0 6px;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            padding: 6px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .countdown-wrap {
@@ -216,21 +475,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.3);
             backdrop-filter: blur(10px);
-            padding: 4px 14px 8px;
+            padding: 6px 16px 10px;
             border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
         }
 
         .cd-number {
-            font-size: 20pt;
+            font-size: 22pt;
             font-weight: 400;
             color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
             line-height: 1.2;
-            min-width: 48px;
+            min-width: 50px;
             text-align: center;
             background: transparent;
         }
@@ -238,7 +497,7 @@
         .cd-label {
             font-size: 11pt;
             color: rgba(255,255,255,0.9);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             letter-spacing: 0.06em;
             background: transparent;
             margin-top: 2px;
@@ -252,7 +511,6 @@
             border: none !important;
         }
 
-        /* ===== BAGIAN BAWAH FOTO (teks doa) ===== */
         .bawah-foto {
             width: 100%;
             margin-top: 24px;
@@ -291,7 +549,6 @@
             margin-top: 6px;
         }
 
-        /* ===== LAYER BARU: bg2 + ft2 (tanpa bg1) ===== */
         .layer-bawah {
             position: relative;
             width: 100%;
@@ -305,8 +562,11 @@
             backdrop-filter: blur(10px);
             opacity: 0;
             transform: translateY(60px) scale(0.92);
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                        transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .layer-bawah.visible {
@@ -324,7 +584,6 @@
             overflow: hidden;
         }
 
-        /* ===== GAMBAR 2: bg2.png - DI TENGAH ===== */
         .gambar2 {
             position: absolute;
             top: 48.55px;
@@ -337,11 +596,10 @@
             object-fit: contain;
             opacity: 0;
             animation: 
-                masukKiri 2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards,
-                naikTurun 3.5s ease-in-out 2.5s infinite alternate;
+                masukKiri 2.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards,
+                naikTurun 4.5s ease-in-out 3.5s infinite alternate;
         }
 
-        /* ===== GAMBAR 3: ft2.png - DI TENGAH ===== */
         .gambar3 {
             position: absolute;
             bottom: 32.12px;
@@ -354,8 +612,116 @@
             object-fit: contain;
             opacity: 0;
             animation: 
-                masukKanan 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards,
-                naikTurun 3.5s ease-in-out 2.8s infinite alternate;
+                masukKanan 3.0s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards,
+                naikTurun 4.5s ease-in-out 3.8s infinite alternate;
+        }
+
+        .teks-mempelai {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 10px 0;
+            font-family: 'Style Script', cursive;
+            opacity: 0;
+            animation: 
+                munculTeks 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+        }
+
+        @keyframes munculTeks {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .teks-mempelai .label-mempelai {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 12pt;
+            font-weight: 300;
+            color: #4d3d34;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            padding: 4px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .teks-mempelai .nama-mempelai {
+            font-family: 'Style Script', cursive;
+            font-size: 28pt;
+            font-weight: 600;
+            color: #1f3a3f;
+            text-shadow: 0 2px 20px rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            padding: 8px 24px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.4);
+            display: inline-block;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            line-height: 1.4;
+            animation: 
+                waveText 2.8s ease-in-out 3.0s infinite,
+                waveShadow 2.8s ease-in-out 3.0s infinite;
+            transform-origin: center;
+        }
+
+        @keyframes waveText {
+            0%, 50%, 100% {
+                transform: scale(1) rotate(0deg);
+                letter-spacing: 0.04em;
+                color: #1f3a3f;
+            }
+            25% {
+                transform: scale(1.02) rotate(0.5deg);
+                letter-spacing: 0.06em;
+                color: #2a4f55;
+            }
+            75% {
+                transform: scale(0.99) rotate(-0.3deg);
+                letter-spacing: 0.04em;
+                color: #3d6b73;
+            }
+        }
+
+        @keyframes waveShadow {
+            0%, 50%, 100% {
+                box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            }
+            25%, 75% {
+                box-shadow: 0 8px 40px rgba(31, 58, 63, 0.15), 0 0 60px rgba(31, 58, 63, 0.05);
+            }
+        }
+
+        .teks-mempelai .nama-mempelai .ampersand {
+            color: #b8a088;
+            font-size: 22pt;
+            margin: 0 6px;
+            display: inline-block;
+            animation: ampersandWave 2.8s ease-in-out 3.0s infinite;
+        }
+
+        @keyframes ampersandWave {
+            0%, 50%, 100% {
+                transform: scale(1) rotate(0deg);
+                color: #b8a088;
+            }
+            25% {
+                transform: scale(1.1) rotate(5deg);
+                color: #c4a898;
+            }
+            75% {
+                transform: scale(0.95) rotate(-3deg);
+                color: #a89080;
+            }
         }
 
         @keyframes masukKiri {
@@ -389,7 +755,9 @@
             }
         }
 
-        /* ===== AYAT AL-QUR'AN - CARD MERAH (tanpa arab) ===== */
+        /* ========================================
+           AYAT AL-QUR'AN - TYPING ANIMATION BERULANG
+           ======================================== */
         .ayat-container {
             width: 100%;
             margin-top: 30px;
@@ -400,6 +768,15 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
             text-align: center;
             border: 2px solid rgba(255,255,255,0.3) !important;
+            opacity: 0;
+            transform: translateY(100px) rotate(-8deg) scale(0.8);
+            transition: all 1.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        .ayat-container.visible {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg) scale(1);
         }
 
         .ayat-container .terjemah {
@@ -411,6 +788,7 @@
             padding: 0 8px;
             font-weight: 500;
             text-shadow: 0 1px 4px rgba(255,255,255,0.2);
+            min-height: 120px;
         }
 
         .ayat-container .sumber {
@@ -420,9 +798,403 @@
             margin-top: 14px;
             letter-spacing: 0.06em;
             font-family: 'Times New Roman', 'Georgia', serif;
+            opacity: 0;
+            transition: opacity 0.8s ease;
         }
 
-        /* ===== TEKS INFORMASI PERNIKAHAN ===== */
+        .ayat-container .sumber.visible {
+            opacity: 1;
+        }
+
+        .ayat-container .sumber.hidden {
+            opacity: 0;
+        }
+
+        /* ========================================
+           CARD STYLE - UNTUK SEMUA TOMBOL
+           ======================================== */
+        
+        .tombol-card {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: rgba(255,255,255,0.2) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            color: #1f3a3f;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 16pt;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 20px !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+            transition: all 0.3s ease;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .tombol-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+            background: rgba(255,255,255,0.35) !important;
+        }
+
+        .tombol-card:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+        }
+
+        /* ========================================
+           TOMBOL LOKASI - ANIMASI HEADSHAKE
+           ======================================== */
+        .tombol-lokasi {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .tombol-lokasi a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 36px;
+            width: 100%;
+            background: rgba(255,255,255,0.2) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            color: #1f3a3f;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 16pt;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 20px !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+            transition: all 0.3s ease;
+            letter-spacing: 0.04em;
+            animation: headshake 2s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes headshake {
+            0%, 100% { transform: rotate(0deg); }
+            5% { transform: rotate(-8deg); }
+            10% { transform: rotate(8deg); }
+            15% { transform: rotate(-8deg); }
+            20% { transform: rotate(8deg); }
+            25% { transform: rotate(-4deg); }
+            30% { transform: rotate(4deg); }
+            35% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .tombol-lokasi a:hover {
+            transform: translateY(-3px) rotate(0deg) !important;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+            background: rgba(255,255,255,0.35) !important;
+            animation-play-state: paused;
+        }
+
+        .tombol-lokasi a:active {
+            transform: translateY(0) scale(0.98) rotate(0deg) !important;
+            animation-play-state: paused;
+        }
+
+        /* ========================================
+           TOMBOL KIRIM UCAPAN - ANIMASI HEARTBEAT
+           ======================================== */
+        .form-ucapan .btn-kirim-ucapan {
+            padding: 16px 36px;
+            width: 100%;
+            background: rgba(255,255,255,0.2) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            color: #1f3a3f;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 16pt;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.04em;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.05); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.03); }
+            40% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        .form-ucapan .btn-kirim-ucapan:hover {
+            transform: translateY(-3px) scale(1.02) !important;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+            background: rgba(255,255,255,0.35) !important;
+            animation-play-state: paused;
+        }
+
+        .form-ucapan .btn-kirim-ucapan:active {
+            transform: translateY(0) scale(0.98) !important;
+            animation-play-state: paused;
+        }
+
+        /* ========================================
+           TOMBOL KIRIM HADIAH - ANIMASI ZOOM IN
+           ======================================== */
+        .hadiah-section {
+            width: 100%;
+            margin-top: 30px;
+            padding: 24px 28px 28px;
+            background: rgba(255,255,255,0.25) !important;
+            backdrop-filter: blur(20px) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            text-align: center;
+        }
+
+        .hadiah-section .judul-hadiah {
+            font-family: 'Style Script', cursive;
+            font-size: 24pt;
+            color: #1f3a3f;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 8px rgba(255,255,255,0.3);
+        }
+
+        .hadiah-section .sub-hadiah {
+            font-family: 'Times New Roman', 'Georgia', serif;
+            font-size: 12pt;
+            color: #4d3d34;
+            margin-bottom: 16px;
+            font-style: italic;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.2);
+        }
+
+        .tombol-hadiah {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 36px;
+            width: 100%;
+            background: rgba(255,255,255,0.2) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            color: #1f3a3f;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 16pt;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.04em;
+            position: relative;
+            overflow: hidden;
+            animation: zoomInOut 2s ease-in-out infinite;
+        }
+
+        @keyframes zoomInOut {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .tombol-hadiah:hover {
+            transform: translateY(-3px) scale(1.03) !important;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+            background: rgba(255,255,255,0.35) !important;
+            animation-play-state: paused;
+        }
+
+        .tombol-hadiah:active {
+            transform: translateY(0) scale(0.98) !important;
+            animation-play-state: paused;
+        }
+
+        .tombol-hadiah .icon-hadiah {
+            font-size: 22pt;
+            animation: giftBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes giftBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(-5deg); }
+        }
+
+        .tombol-hadiah .badge-hadiah {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: rgba(255,107,107,0.9);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            font-size: 10pt;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: pulseBadge 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseBadge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ========================================
+           CARD HADIAH
+           ======================================== */
+        .card-hadiah-container {
+            width: 100%;
+            margin-top: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+        }
+
+        .card-hadiah-container.active {
+            margin-top: 20px;
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .card-hadiah {
+            width: 100%;
+            padding: 28px 28px 32px;
+            background: rgba(255,255,255,0.25) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            text-align: center;
+            animation: cardSlideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes cardSlideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .card-hadiah .judul-card-hadiah {
+            font-family: 'Style Script', cursive;
+            font-size: 24pt;
+            color: #1f3a3f;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 8px rgba(255,255,255,0.3);
+        }
+
+        .card-hadiah .sub-card-hadiah {
+            font-family: 'Times New Roman', 'Georgia', serif;
+            font-size: 12pt;
+            color: #4d3d34;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .card-hadiah .info-rekening {
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: left;
+        }
+
+        .card-hadiah .info-rekening .bank {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 14pt;
+            font-weight: 700;
+            color: #1f3a3f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-hadiah .info-rekening .bank .logo-bank {
+            font-size: 20pt;
+        }
+
+        .card-hadiah .info-rekening .no-rek {
+            font-family: 'Courier New', monospace;
+            font-size: 18pt;
+            font-weight: 700;
+            color: #1f3a3f;
+            letter-spacing: 2px;
+            margin: 6px 0 4px;
+        }
+
+        .card-hadiah .info-rekening .no-rek.sensor {
+            letter-spacing: 6px;
+            color: #888;
+            font-size: 16pt;
+        }
+
+        .card-hadiah .info-rekening .nama-rek {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 12pt;
+            color: #4d3d34;
+        }
+
+        .card-hadiah .info-rekening .copy-rek {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 20px;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 10pt;
+            color: #1f3a3f;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card-hadiah .info-rekening .copy-rek:hover {
+            background: rgba(255,255,255,0.5);
+            transform: scale(1.02);
+        }
+
+        .card-hadiah .info-rekening .copy-rek.copied {
+            background: rgba(107, 203, 119, 0.5);
+            color: #1f3a3f;
+            border-color: rgba(107, 203, 119, 0.3);
+        }
+
+        .card-hadiah .terima-kasih {
+            font-family: 'Style Script', cursive;
+            font-size: 18pt;
+            color: #1f3a3f;
+            text-align: center;
+            margin-top: 12px;
+            text-shadow: 0 1px 4px rgba(255,255,255,0.3);
+        }
+
+        /* ========================================
+           TEKS INFORMASI PERNIKAHAN
+           ======================================== */
         .info-pernikahan {
             width: 100%;
             margin-top: 30px;
@@ -434,6 +1206,14 @@
             border: 1px solid rgba(255,255,255,0.3) !important;
             text-align: center;
             font-family: 'Times New Roman', 'Georgia', serif;
+            opacity: 0;
+            transform: translateY(60px) scale(0.92);
+            transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .info-pernikahan.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .info-pernikahan .judul-info {
@@ -443,6 +1223,7 @@
             line-height: 2;
             margin-bottom: 6px;
             text-shadow: 0 1px 4px rgba(255,255,255,0.2);
+            min-height: 60px;
         }
 
         .info-pernikahan p {
@@ -451,6 +1232,7 @@
             color: #2e241e;
             margin-bottom: 6px;
             text-shadow: 0 1px 4px rgba(255,255,255,0.2);
+            min-height: 50px;
         }
 
         .info-pernikahan .nama-pasangan-info {
@@ -461,6 +1243,7 @@
             line-height: 1.6;
             margin: 8px 0;
             text-shadow: 0 1px 4px rgba(255,255,255,0.2);
+            min-height: 50px;
         }
 
         .info-pernikahan .orang-tua {
@@ -468,6 +1251,7 @@
             color: #4d3d34;
             line-height: 1.8;
             text-shadow: 0 1px 4px rgba(255,255,255,0.2);
+            min-height: 45px;
         }
 
         .info-pernikahan .divider {
@@ -478,11 +1262,12 @@
         }
 
         .info-pernikahan .detail-acara {
-            text-align: left;
+            text-align: center;
             padding: 0 20px;
             font-size: 14pt;
             line-height: 2.2;
             color: #2e241e;
+            min-height: 180px;
         }
 
         .info-pernikahan .detail-acara strong {
@@ -490,54 +1275,21 @@
             font-weight: 600;
         }
 
-        .info-pernikahan .aamiin {
-            font-size: 18pt;
-            font-weight: 600;
-            color: #1f3a3f;
+        .info-pernikahan .aamiin-wrapper {
+            min-height: 50px;
             margin-top: 12px;
+        }
+
+        .info-pernikahan .aamiin {
+            font-size: 24pt;
+            font-weight: 700;
             font-family: 'Style Script', cursive;
+            background: linear-gradient(135deg, #1f3a3f, #4d7a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* ===== TOMBOL LOKASI ===== */
-        .tombol-lokasi {
-            width: 100%;
-            margin-top: 20px;
-            text-align: center;
-            background: transparent !important;
-            padding: 0 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-        }
-
-        .tombol-lokasi a {
-            display: inline-block;
-            padding: 16px 40px;
-            background: rgba(31, 58, 63, 0.9);
-            backdrop-filter: blur(10px);
-            color: #ffffff;
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            font-size: 16pt;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            letter-spacing: 0.04em;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .tombol-lokasi a:hover {
-            background: rgba(42, 79, 85, 0.95);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.3);
-        }
-
-        .tombol-lokasi a:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        /* ===== COUNTDOWN BAWAH ===== */
         .countdown-bawah {
             width: 100%;
             margin-top: 30px;
@@ -591,11 +1343,11 @@
         }
 
         /* ========================================
-           FORM UCAPAN & DAFTAR UCAPAN
+           UCAPAN SECTION
            ======================================== */
         .ucapan-section {
             width: 100%;
-            margin-top: 40px;
+            margin-top: 30px;
             padding: 30px 28px 40px;
             background: rgba(255,255,255,0.25) !important;
             backdrop-filter: blur(20px) !important;
@@ -623,7 +1375,6 @@
             text-shadow: 0 1px 4px rgba(255,255,255,0.2);
         }
 
-        /* Form */
         .form-ucapan {
             display: flex;
             flex-direction: column;
@@ -659,33 +1410,6 @@
             font-family: 'Segoe UI', 'Roboto', sans-serif;
         }
 
-        .form-ucapan .btn-kirim-ucapan {
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #1f3a3f, #2a4f55);
-            color: #ffffff;
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            font-size: 14pt;
-            font-weight: 600;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.04em;
-            box-shadow: 0 4px 16px rgba(31, 58, 63, 0.25);
-        }
-
-        .form-ucapan .btn-kirim-ucapan:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(31, 58, 63, 0.35);
-            background: linear-gradient(135deg, #2a4f55, #1f3a3f);
-        }
-
-        .form-ucapan .btn-kirim-ucapan:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 12px rgba(31, 58, 63, 0.2);
-        }
-
-        /* Daftar ucapan */
         .daftar-ucapan {
             display: flex;
             flex-direction: column;
@@ -716,7 +1440,7 @@
             border-radius: 16px;
             padding: 16px 20px;
             border-left: 4px solid #1f3a3f;
-            animation: slideUcapan 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: slideUcapan 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.2);
         }
@@ -786,13 +1510,15 @@
             margin-bottom: 8px;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
         @media (max-width: 740px) {
             .frame-utama { border-radius: 20px; }
-            .content { padding-top: 730.39px; }
-            .the-wedding { font-size: 12pt; }
-            .nama-pasangan { font-size: 16pt; white-space: normal; word-break: break-word; max-width: 90%; }
-            .alamat { font-size: 17pt; }
+            .content { padding-bottom: 30px; }
+            .the-wedding { font-size: 12pt; padding: 6px 18px; }
+            .nama-pasangan { font-size: 17pt; white-space: normal; word-break: break-word; max-width: 90%; padding: 6px 16px; }
+            .alamat { font-size: 15pt; padding: 4px 14px; }
             .cd-number { font-size: 18pt; min-width: 38px; }
             .cd-label { font-size: 10pt; }
             .countdown-wrap { gap: 10px; }
@@ -804,30 +1530,56 @@
             .layer-bawah { margin-top: 20px; }
             .gambar2 { top: 30px; max-width: 85%; }
             .gambar3 { bottom: 20px; max-width: 85%; }
+            
+            .teks-mempelai .nama-mempelai {
+                font-size: 22pt;
+                padding: 6px 18px;
+            }
+            .teks-mempelai .label-mempelai {
+                font-size: 10pt;
+                padding: 3px 12px;
+            }
+            .teks-mempelai .nama-mempelai .ampersand {
+                font-size: 18pt;
+            }
+            
             .ayat-container { padding: 20px 18px 18px; margin-top: 24px; }
-            .ayat-container .terjemah { font-size: 13pt; }
+            .ayat-container .terjemah { font-size: 13pt; min-height: 100px; }
             .ayat-container .sumber { font-size: 12pt; }
             .info-pernikahan { padding: 20px 18px 22px; margin-top: 24px; }
-            .info-pernikahan .judul-info { font-size: 14pt; }
-            .info-pernikahan p { font-size: 12pt; }
-            .info-pernikahan .nama-pasangan-info { font-size: 16pt; }
-            .info-pernikahan .orang-tua { font-size: 11pt; }
-            .info-pernikahan .detail-acara { font-size: 12pt; padding: 0 10px; }
-            .info-pernikahan .aamiin { font-size: 16pt; }
+            .info-pernikahan .judul-info { font-size: 14pt; min-height: 50px; }
+            .info-pernikahan p { font-size: 12pt; min-height: 40px; }
+            .info-pernikahan .nama-pasangan-info { font-size: 16pt; min-height: 40px; }
+            .info-pernikahan .orang-tua { font-size: 11pt; min-height: 35px; }
+            .info-pernikahan .detail-acara { font-size: 12pt; padding: 0 10px; min-height: 150px; }
+            .info-pernikahan .aamiin { font-size: 20pt; }
             .tombol-lokasi a { font-size: 14pt; padding: 14px 30px; }
             .countdown-bawah { margin-top: 24px; padding: 16px 12px; }
             .countdown-bawah .cd-number { font-size: 18pt; min-width: 42px; padding: 4px 8px; }
             .countdown-bawah .cd-label { font-size: 10pt; }
             .countdown-bawah .cd-item { padding: 4px 10px 6px; }
             
+            .hadiah-section { padding: 18px 18px 22px; margin-top: 24px; }
+            .hadiah-section .judul-hadiah { font-size: 20pt; }
+            .hadiah-section .sub-hadiah { font-size: 11pt; }
+            .tombol-hadiah { padding: 14px 28px; font-size: 14pt; }
+            .tombol-hadiah .icon-hadiah { font-size: 18pt; }
+            
+            .card-hadiah { padding: 20px 18px 24px; }
+            .card-hadiah .judul-card-hadiah { font-size: 20pt; }
+            .card-hadiah .info-rekening .bank { font-size: 12pt; }
+            .card-hadiah .info-rekening .no-rek { font-size: 15pt; }
+            .card-hadiah .info-rekening .no-rek.sensor { font-size: 14pt; }
+            .card-hadiah .terima-kasih { font-size: 16pt; }
+            
             .ucapan-section {
                 padding: 24px 18px 30px;
-                margin-top: 30px;
+                margin-top: 24px;
             }
             .ucapan-section .judul-ucapan { font-size: 24pt; }
             .form-ucapan input,
             .form-ucapan textarea { font-size: 11pt; padding: 12px 16px; }
-            .form-ucapan .btn-kirim-ucapan { font-size: 13pt; padding: 12px 28px; }
+            .form-ucapan .btn-kirim-ucapan { font-size: 14pt; padding: 14px 28px; }
             .ucapan-item .nama-ucapan { font-size: 12pt; }
             .ucapan-item .isi-ucapan { font-size: 11pt; }
             
@@ -838,11 +1590,14 @@
         }
 
         @media (max-width: 480px) {
-            .the-wedding { font-size: 11pt; }
-            .nama-pasangan { font-size: 14pt; }
-            .alamat { font-size: 15pt; }
-            .cd-number { font-size: 16pt; min-width: 32px; }
-            .cd-label { font-size: 9pt; }
+            .frame-utama { border-radius: 16px; }
+            .frame-utama::before { border-radius: 22px; filter: blur(15px); }
+            .content { padding-bottom: 20px; }
+            .the-wedding { font-size: 10pt; padding: 4px 14px; }
+            .nama-pasangan { font-size: 13pt; padding: 4px 12px; }
+            .alamat { font-size: 12pt; padding: 3px 10px; }
+            .cd-number { font-size: 15pt; min-width: 30px; }
+            .cd-label { font-size: 8pt; }
             .countdown-wrap { gap: 6px; }
             .cd-item { padding: 3px 8px 5px; border-radius: 12px; }
             .bottom-block { margin-top: 6px; }
@@ -853,25 +1608,53 @@
             .layer-bawah { margin-top: 16px; }
             .gambar2 { top: 20px; max-width: 80%; }
             .gambar3 { bottom: 14px; max-width: 80%; }
+            
+            .teks-mempelai .nama-mempelai {
+                font-size: 17pt;
+                padding: 4px 14px;
+            }
+            .teks-mempelai .label-mempelai {
+                font-size: 8pt;
+                padding: 2px 10px;
+            }
+            .teks-mempelai .nama-mempelai .ampersand {
+                font-size: 14pt;
+            }
+            
             .ayat-container { padding: 16px 14px 16px; margin-top: 18px; }
-            .ayat-container .terjemah { font-size: 11pt; }
+            .ayat-container .terjemah { font-size: 11pt; min-height: 80px; }
             .ayat-container .sumber { font-size: 10pt; }
             .info-pernikahan { padding: 16px 12px 18px; margin-top: 18px; }
-            .info-pernikahan .judul-info { font-size: 12pt; }
-            .info-pernikahan p { font-size: 10.5pt; }
-            .info-pernikahan .nama-pasangan-info { font-size: 14pt; }
-            .info-pernikahan .orang-tua { font-size: 10pt; }
-            .info-pernikahan .detail-acara { font-size: 10.5pt; padding: 0 6px; }
-            .info-pernikahan .aamiin { font-size: 14pt; }
+            .info-pernikahan .judul-info { font-size: 12pt; min-height: 40px; }
+            .info-pernikahan p { font-size: 10.5pt; min-height: 35px; }
+            .info-pernikahan .nama-pasangan-info { font-size: 14pt; min-height: 35px; }
+            .info-pernikahan .orang-tua { font-size: 10pt; min-height: 30px; }
+            .info-pernikahan .detail-acara { font-size: 10.5pt; padding: 0 6px; min-height: 130px; }
+            .info-pernikahan .aamiin { font-size: 18pt; }
             .tombol-lokasi a { font-size: 12pt; padding: 12px 24px; }
             .countdown-bawah { margin-top: 18px; padding: 12px 8px; }
             .countdown-bawah .cd-number { font-size: 15pt; min-width: 34px; padding: 3px 6px; }
             .countdown-bawah .cd-label { font-size: 8pt; }
             .countdown-bawah .cd-item { padding: 3px 8px 5px; border-radius: 12px; }
             
+            .hadiah-section { padding: 14px 14px 18px; margin-top: 18px; }
+            .hadiah-section .judul-hadiah { font-size: 17pt; }
+            .hadiah-section .sub-hadiah { font-size: 10pt; }
+            .tombol-hadiah { padding: 12px 22px; font-size: 12pt; gap: 8px; }
+            .tombol-hadiah .icon-hadiah { font-size: 16pt; }
+            .tombol-hadiah .badge-hadiah { font-size: 8pt; padding: 2px 10px; }
+            
+            .card-hadiah { padding: 16px 14px 20px; }
+            .card-hadiah .judul-card-hadiah { font-size: 17pt; }
+            .card-hadiah .info-rekening .bank { font-size: 11pt; }
+            .card-hadiah .info-rekening .no-rek { font-size: 13pt; }
+            .card-hadiah .info-rekening .no-rek.sensor { font-size: 12pt; }
+            .card-hadiah .info-rekening .nama-rek { font-size: 10pt; }
+            .card-hadiah .terima-kasih { font-size: 14pt; }
+            
             .ucapan-section {
                 padding: 18px 14px 24px;
-                margin-top: 24px;
+                margin-top: 18px;
                 border-radius: 20px;
             }
             .ucapan-section .judul-ucapan { font-size: 20pt; }
@@ -931,9 +1714,12 @@
     </div>
 
     <!-- TEKS DOA -->
-    <div class="bawah-foto">
+    <div class="bawah-foto scroll-reveal-bottom delay-1" id="doa1">
         <p class="arab">اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ</p>
         <p>Assalamualaikum Warohmatullohi Wabarokatuh</p>
+    </div>
+
+    <div class="bawah-foto scroll-reveal-left delay-2" id="doa2" style="margin-top:16px;">
         <p style="margin-top:12px; font-size:15pt; line-height:1.8;">
             Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. 
             Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami:
@@ -943,8 +1729,8 @@
         </p>
     </div>
 
-    <!-- LAYER BAWAH: bg2 + ft2 (tanpa bg1) -->
-    <div class="layer-bawah" id="layerBawah">
+    <!-- LAYER DEKORASI -->
+    <div class="layer-bawah scroll-reveal-right delay-3" id="layerBawah">
         <div class="layer-atas">
             <img 
                 class="gambar2" 
@@ -959,62 +1745,108 @@
                 loading="lazy"
             />
         </div>
-    </div>
-
-    <!-- ===== AYAT AL-QUR'AN - CARD MERAH (tanpa arab) ===== -->
-    <div class="ayat-container">
-        <div class="terjemah">
-            "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
-        </div>
-        <div class="sumber">
-            — QS. Ar-Rum : 21 —
+        <div class="teks-mempelai">
+            <div class="label-mempelai">✧ Mempelai Pengantin ✧</div>
+            <div class="nama-mempelai">
+                Uswatun Hasanan <span class="ampersand">&amp;</span> Erik Adi Prasetiyo
+            </div>
         </div>
     </div>
 
-    <!-- ===== TEKS INFORMASI PERNIKAHAN ===== -->
-    <div class="info-pernikahan">
-        <div class="judul-info">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</div>
-        <p>Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan di antara putra-putri kami:</p>
+    <!-- AYAT - TYPING ANIMATION BERULANG -->
+    <div class="ayat-container scroll-reveal-bottom-rotate delay-4" id="ayatContainer">
+        <div class="terjemah" id="ayatText">
+            <span id="typingText"></span><span class="typing-cursor" id="typingCursor"></span>
+        </div>
+        <div class="sumber" id="sumberAyat">— QS. Ar-Rum : 21 —</div>
+    </div>
+
+    <!-- ========================================
+         INFORMASI PERNIKAHAN - ANIMASI BERURUTAN
+         ======================================== -->
+    <div class="info-pernikahan scroll-reveal-left-bottom delay-5" id="infoCard">
         
-        <div class="nama-pasangan-info">Uswatun Hasanah</div>
-        <div class="orang-tua">( Putri dari Bapak Supri &amp; Ibu Rufiah — Lamongan )</div>
+        <!-- 1. TYPING: Maha Suci Allah... -->
+        <div class="judul-info">
+            <span class="typing-container">
+                <span class="typing-text" id="typing1"></span>
+            </span>
+        </div>
         
-        <div style="font-size:18pt; color:#b8a088; margin:4px 0;">&amp;</div>
+        <!-- 2. TYPING: Ya Allah, perkenankanlah... -->
+        <p>
+            <span class="typing-container">
+                <span class="typing-text" id="typing2"></span>
+            </span>
+        </p>
         
-        <div class="nama-pasangan-info">Erik Adi Prasetiyo</div>
-        <div class="orang-tua">( Putra dari Bapak Eko Yulianto &amp; Ibu Kumaidah — Gresik )</div>
+        <!-- 3. NAMA: Uswatun Hasanah - muncul dengan animasi setelah typing2 selesai -->
+        <div class="nama-pasangan-info nama-animasi" id="namaUswatun">
+            Uswatun Hasanah
+        </div>
+        
+        <!-- 4. TYPING: ( Putri dari Bapak Supri & Ibu Rufiah — Lamongan ) -->
+        <div class="orang-tua">
+            <span class="typing-container">
+                <span class="typing-text" id="typing3"></span>
+            </span>
+        </div>
+        
+        <!-- 5. SIMBOL & -->
+        <div style="font-size:22pt; color:#b8a088; margin:6px 0;">&amp;</div>
+        
+        <!-- 6. NAMA: Erik Adi Prasetiyo - muncul dengan animasi setelah typing3 selesai -->
+        <div class="nama-pasangan-info nama-animasi" id="namaErik">
+            Erik Adi Prasetiyo
+        </div>
+        
+        <!-- 7. TYPING: ( Putra dari Bapak Eko Yulianto & Ibu Kumaidah — Gresik ) -->
+        <div class="orang-tua">
+            <span class="typing-container">
+                <span class="typing-text" id="typing4"></span>
+            </span>
+        </div>
         
         <div class="divider"></div>
         
+        <!-- 8. TYPING: Kami bermaksud mengundang... -->
         <p style="font-size:14pt; font-weight:500; color:#1f3a3f; margin-top:6px;">
-            Kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami yang akan diselenggarakan pada:
+            <span class="typing-container">
+                <span class="typing-text" id="typing5"></span>
+            </span>
         </p>
         
+        <!-- 9. TYPING: Detail Acara -->
         <div class="detail-acara">
-            <strong>Akad Nikah:</strong><br />
-            <strong>Hari</strong> &nbsp; : Sabtu Wage<br />
-            <strong>Tanggal</strong> : 19 September 2026<br />
-            <strong>Waktu</strong> &nbsp; : 13.00 WIB sampai selesai<br />
-            <strong>Tempat</strong> : Dsn Crewek Ds. Pelabuhan Rejo Kec. Mantup Kab. Lamongan
+            <span class="typing-container">
+                <span class="typing-text" id="typing6"></span>
+            </span>
         </div>
         
         <div class="divider"></div>
         
+        <!-- 10. TYPING: Semoga Allah SWT... -->
         <p style="font-size:15pt; color:#2e241e; line-height:1.8;">
-            Semoga Allah SWT meridhoi dan memberkahi ikatan ini.
+            <span class="typing-container">
+                <span class="typing-text" id="typing7"></span>
+            </span>
         </p>
-        <div class="aamiin">Aamiin</div>
+        
+        <!-- 11. TYPING: Aamiin -->
+        <div class="aamiin-wrapper">
+            <span class="aamiin-typing" id="typingAamiin"></span>
+        </div>
     </div>
 
-    <!-- ===== TOMBOL LOKASI ===== -->
-    <div class="tombol-lokasi">
+    <!-- TOMBOL LOKASI - ANIMASI HEADSHAKE -->
+    <div class="tombol-lokasi scroll-reveal-right-bottom delay-6">
         <a href="https://www.google.com/maps?q=-7.2920226,112.3998134&z=17&hl=id" target="_blank" rel="noopener noreferrer">
             📍 Buka Lokasi di Google Maps
         </a>
     </div>
 
-    <!-- ===== COUNTDOWN BAWAH ===== -->
-    <div class="countdown-bawah">
+    <!-- COUNTDOWN BAWAH -->
+    <div class="countdown-bawah scroll-reveal-bounce delay-7">
         <div class="countdown-wrap" id="countdownBawahContainer">
             <div class="cd-item">
                 <span class="cd-number" id="cd-days-bawah">00</span>
@@ -1035,49 +1867,57 @@
         </div>
     </div>
 
-    <!-- ========================================
-         FORM UCAPAN & DAFTAR UCAPAN
-         ======================================== -->
-    <div class="ucapan-section">
+    <!-- TOMBOL KIRIM HADIAH - ANIMASI ZOOM IN -->
+    <div class="hadiah-section scroll-reveal-left delay-8">
+        <div class="judul-hadiah">🎁 Kirim Hadiah & Doa</div>
+        <div class="sub-hadiah">"Berikan kebahagiaan untuk pasangan pengantin"</div>
+        <button class="tombol-hadiah" id="btnKirimHadiah">
+            <span class="icon-hadiah">🎁</span>
+            <span>Kirim Hadiah</span>
+            <span class="badge-hadiah">❤️</span>
+        </button>
+    </div>
+
+    <!-- CARD HADIAH -->
+    <div class="card-hadiah-container" id="cardHadiahContainer">
+        <div class="card-hadiah">
+            <div class="judul-card-hadiah">💝 Informasi Rekening</div>
+            <div class="sub-card-hadiah">"Semoga Allah membalas kebaikan Anda"</div>
+            <div class="info-rekening">
+                <div class="bank">
+                    <span class="logo-bank">🏦</span>
+                    Bank BCA
+                </div>
+                <div class="no-rek sensor">xxx.xxx.xxx</div>
+                <div class="nama-rek">a.n. Erik Adi Prastio</div>
+                <button class="copy-rek" data-rek="2582681881">📋 Salin Nomor Rekening</button>
+            </div>
+            <div class="terima-kasih">🙏 Terima Kasih atas Kebaikan Anda</div>
+        </div>
+    </div>
+
+    <!-- FORM UCAPAN - ANIMASI HEARTBEAT -->
+    <div class="ucapan-section scroll-reveal-left delay-9">
         <div class="judul-ucapan">💌 Kirim Ucapan & Doa</div>
         <div class="sub-judul">"Sampaikan doa terbaik untuk pasangan pengantin"</div>
-        
-        <!-- Form -->
         <form class="form-ucapan" id="formUcapan">
-            <input 
-                type="text" 
-                id="namaTamu" 
-                placeholder="Nama Anda..." 
-                required
-                autocomplete="name"
-            />
-            <textarea 
-                id="isiUcapan" 
-                placeholder="Tulis ucapan atau doa untuk Uswatun &amp; Erik..." 
-                required
-            ></textarea>
-            <button type="submit" class="btn-kirim-ucapan">
-                ✨ Kirim Ucapan
-            </button>
+            <input type="text" id="namaTamu" placeholder="Nama Anda..." required autocomplete="name" />
+            <textarea id="isiUcapan" placeholder="Tulis ucapan atau doa untuk Uswatun &amp; Erik..." required></textarea>
+            <button type="submit" class="btn-kirim-ucapan">✨ Kirim Ucapan</button>
         </form>
-        
-        <!-- Daftar ucapan -->
-        <div id="daftarUcapan" class="daftar-ucapan">
-            <!-- Ucapan akan muncul di sini -->
-        </div>
+        <div id="daftarUcapan" class="daftar-ucapan"></div>
     </div>
 
 </div>
 
 <script>
-    // ===== COUNTDOWN UTAMA & BAWAH =====
+    // ===== COUNTDOWN =====
     (function() {
         const targetDate = new Date(2026, 8, 19, 13, 0, 0).getTime();
         const daysEl = document.getElementById('cd-days');
         const hoursEl = document.getElementById('cd-hours');
         const minutesEl = document.getElementById('cd-minutes');
         const secondsEl = document.getElementById('cd-seconds');
-
         const daysBawah = document.getElementById('cd-days-bawah');
         const hoursBawah = document.getElementById('cd-hours-bawah');
         const minutesBawah = document.getElementById('cd-minutes-bawah');
@@ -1086,14 +1926,12 @@
         function updateCountdown() {
             const now = Date.now();
             let diff = targetDate - now;
-            
             if (diff <= 0) {
                 const reset = ['00', '00', '00', '00'];
                 [daysEl, hoursEl, minutesEl, secondsEl].forEach((el, i) => el.textContent = reset[i]);
                 [daysBawah, hoursBawah, minutesBawah, secondsBawah].forEach((el, i) => el.textContent = reset[i]);
                 return;
             }
-
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             diff -= days * (1000 * 60 * 60 * 24);
             const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -1101,45 +1939,369 @@
             const minutes = Math.floor(diff / (1000 * 60));
             diff -= minutes * (1000 * 60);
             const seconds = Math.floor(diff / 1000);
-
             const d = String(days).padStart(2, '0');
             const h = String(hours).padStart(2, '0');
             const m = String(minutes).padStart(2, '0');
             const s = String(seconds).padStart(2, '0');
-
             daysEl.textContent = d;
             hoursEl.textContent = h;
             minutesEl.textContent = m;
             secondsEl.textContent = s;
-
             daysBawah.textContent = d;
             hoursBawah.textContent = h;
             minutesBawah.textContent = m;
             secondsBawah.textContent = s;
         }
-
         updateCountdown();
         setInterval(updateCountdown, 1000);
     })();
 
-    // ===== INTERSECTION OBSERVER UNTUK ANIMASI SCROLL =====
+    // ===== TYPING ANIMATION BERULANG UNTUK AYAT =====
     document.addEventListener('DOMContentLoaded', function() {
-        const layerBawah = document.getElementById('layerBawah');
-        
-        if (layerBawah) {
+        const ayatText = `"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."`;
+        const typingElement = document.getElementById('typingText');
+        const cursorElement = document.getElementById('typingCursor');
+        const sumberElement = document.getElementById('sumberAyat');
+        const ayatContainer = document.getElementById('ayatContainer');
+
+        let charIndex = 0;
+        let isTypingRunning = false;
+        let typingTimeout = null;
+        let cycleTimeout = null;
+        let isFirstRun = true;
+
+        // Kursor awal disembunyikan
+        cursorElement.classList.add('hidden');
+
+        function startTyping() {
+            if (isTypingRunning) return;
+            isTypingRunning = true;
+            typingElement.textContent = '';
+            charIndex = 0;
+            // Tampilkan kursor saat typing dimulai
+            cursorElement.classList.remove('hidden');
+            sumberElement.classList.remove('visible');
+            sumberElement.classList.add('hidden');
+            typeNextChar();
+        }
+
+        function typeNextChar() {
+            if (charIndex < ayatText.length) {
+                typingElement.textContent += ayatText.charAt(charIndex);
+                charIndex++;
+                const delay = 12 + Math.random() * 23;
+                typingTimeout = setTimeout(typeNextChar, delay);
+            } else {
+                setTimeout(() => {
+                    cursorElement.classList.add('hidden');
+                }, 600);
+                setTimeout(() => {
+                    sumberElement.classList.remove('hidden');
+                    sumberElement.classList.add('visible');
+                }, 300);
+                cycleTimeout = setTimeout(() => {
+                    resetAndRestart();
+                }, 7000);
+            }
+        }
+
+        function resetAndRestart() {
+            if (typingTimeout) {
+                clearTimeout(typingTimeout);
+                typingTimeout = null;
+            }
+            if (cycleTimeout) {
+                clearTimeout(cycleTimeout);
+                cycleTimeout = null;
+            }
+            isTypingRunning = false;
+            charIndex = 0;
+            sumberElement.classList.remove('visible');
+            sumberElement.classList.add('hidden');
+            // Sembunyikan kursor sebelum reset
+            cursorElement.classList.add('hidden');
+            typingElement.style.transition = 'opacity 0.4s ease';
+            typingElement.style.opacity = '0';
+            setTimeout(() => {
+                typingElement.textContent = '';
+                typingElement.style.opacity = '1';
+                startTyping();
+            }, 500);
+        }
+
+        const ayatObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
+                    entry.target.classList.add('visible');
+                    setTimeout(() => {
+                        startTyping();
+                    }, 600);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -30px 0px'
+        });
+        if (ayatContainer) {
+            ayatObserver.observe(ayatContainer);
+        }
+
+        setTimeout(function() {
+            if (ayatContainer && ayatContainer.classList.contains('visible') && !isTypingRunning && isFirstRun) {
+                isFirstRun = false;
+                startTyping();
+            }
+        }, 3000);
+
+        // ===== SCROLL REVEAL =====
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -30px 0px'
+        };
+        const animClasses = [
+            'scroll-reveal-bottom',
+            'scroll-reveal-left',
+            'scroll-reveal-right',
+            'scroll-reveal-bottom-rotate',
+            'scroll-reveal-left-bottom',
+            'scroll-reveal-right-bottom',
+            'scroll-reveal-bounce'
+        ];
+        animClasses.forEach(className => {
+            const elements = document.querySelectorAll(`.${className}:not(#ayatContainer)`);
             const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+            elements.forEach(el => observer.observe(el));
+        });
+
+        const layerBawah = document.getElementById('layerBawah');
+        if (layerBawah) {
+            const layerObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         layerBawah.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -30px 0px'
-            });
-            
-            observer.observe(layerBawah);
+            }, observerOptions);
+            layerObserver.observe(layerBawah);
         }
+
+        // ===== OBSERVER UNTUK ANIMASI SLIDE =====
+        const slideObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        });
+        document.querySelectorAll('.slide-right, .slide-left').forEach(el => {
+            slideObserver.observe(el);
+        });
+
+        // ========================================
+        // TYPING ANIMATION - BERURUTAN
+        // ========================================
+        
+        const typingTexts = [
+            { id: 'typing1', text: 'Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.', delay: 1000, speed: 25 },
+            { id: 'typing2', text: 'Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan di antara putra-putri kami:', delay: 800, speed: 25 },
+            // typing3 adalah teks orang tua Uswatun
+            { id: 'typing3', text: '( Putri dari Bapak Supri & Ibu Rufiah — Lamongan )', delay: 800, speed: 25 },
+            // typing4 adalah teks orang tua Erik
+            { id: 'typing4', text: '( Putra dari Bapak Eko Yulianto & Ibu Kumaidah — Gresik )', delay: 800, speed: 25 },
+            { id: 'typing5', text: 'Kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami yang akan diselenggarakan pada:', delay: 800, speed: 25 },
+            { id: 'typing6', text: 'Akad Nikah:\nHari   : Sabtu Wage\nTanggal : 19 September 2026\nWaktu   : 13.00 WIB sampai selesai\nTempat : Dsn Crewek Ds. Pelabuhan Rejo Kec. Mantup Kab. Lamongan', delay: 1000, speed: 20 },
+            { id: 'typing7', text: 'Semoga Allah SWT meridhoi dan memberkahi ikatan ini.', delay: 800, speed: 25 },
+            { id: 'typingAamiin', text: 'Aamiin', delay: 1200, speed: 150, isAamiin: true }
+        ];
+
+        let currentTypingIndex = 0;
+        let isTypingSequenceRunning = false;
+
+        function typeText(element, text, speed, callback) {
+            let index = 0;
+            element.textContent = '';
+            element.style.borderRight = '3px solid #1f3a3f';
+            element.classList.remove('done');
+            
+            // Hapus kursor manual jika ada
+            const existingCursor = element.querySelector('.cursor-blink');
+            if (existingCursor) existingCursor.remove();
+            
+            function typeChar() {
+                if (index < text.length) {
+                    if (text.charAt(index) === '\n') {
+                        element.innerHTML += '<br>';
+                    } else {
+                        element.textContent += text.charAt(index);
+                    }
+                    index++;
+                    setTimeout(typeChar, speed);
+                } else {
+                    element.style.borderRight = 'none';
+                    element.classList.add('done');
+                    if (callback) callback();
+                }
+            }
+            typeChar();
+        }
+
+        function typeAamiin(element, text, speed, callback) {
+            let index = 0;
+            element.textContent = '';
+            element.classList.remove('done');
+            element.style.borderRight = '3px solid #1f3a3f';
+            
+            function typeChar() {
+                if (index < text.length) {
+                    element.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeChar, speed);
+                } else {
+                    element.style.borderRight = 'none';
+                    element.classList.add('done');
+                    if (callback) callback();
+                }
+            }
+            typeChar();
+        }
+
+        function startTypingSequence() {
+            if (isTypingSequenceRunning) return;
+            if (currentTypingIndex >= typingTexts.length) {
+                return;
+            }
+            
+            isTypingSequenceRunning = true;
+            const item = typingTexts[currentTypingIndex];
+            const element = document.getElementById(item.id);
+            
+            if (!element) {
+                currentTypingIndex++;
+                isTypingSequenceRunning = false;
+                setTimeout(startTypingSequence, 300);
+                return;
+            }
+            
+            const isAamiin = item.isAamiin || false;
+            const speed = isAamiin ? 150 : 20;
+            
+            // Jika ini adalah teks typing biasa
+            if (!isAamiin) {
+                typeText(element, item.text, speed, function() {
+                    currentTypingIndex++;
+                    isTypingSequenceRunning = false;
+                    
+                    // Cek apakah setelah typing2 selesai (index sebelumnya = 1), tampilkan nama Uswatun
+                    if (item.id === 'typing2') {
+                        const namaUswatun = document.getElementById('namaUswatun');
+                        if (namaUswatun) {
+                            setTimeout(() => {
+                                namaUswatun.classList.add('visible');
+                            }, 300);
+                        }
+                    }
+                    
+                    // Cek apakah setelah typing3 selesai (index sebelumnya = 2), tampilkan nama Erik
+                    if (item.id === 'typing3') {
+                        const namaErik = document.getElementById('namaErik');
+                        if (namaErik) {
+                            setTimeout(() => {
+                                namaErik.classList.add('visible');
+                            }, 300);
+                        }
+                    }
+                    
+                    setTimeout(startTypingSequence, 500);
+                });
+            } else {
+                typeAamiin(element, item.text, speed, function() {
+                    currentTypingIndex++;
+                    isTypingSequenceRunning = false;
+                    setTimeout(startTypingSequence, 600);
+                });
+            }
+        }
+
+        // Observer untuk memulai typing sequence saat card terlihat
+        const infoCard = document.getElementById('infoCard');
+        let hasStarted = false;
+
+        const infoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasStarted) {
+                    hasStarted = true;
+                    // Tunggu card muncul dulu, lalu mulai typing
+                    setTimeout(function() {
+                        // Mulai typing sequence
+                        setTimeout(startTypingSequence, 500);
+                    }, 600);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        });
+
+        if (infoCard) {
+            infoObserver.observe(infoCard);
+        }
+
+        // ===== TOMBOL KIRIM HADIAH =====
+        const btnHadiah = document.getElementById('btnKirimHadiah');
+        const cardContainer = document.getElementById('cardHadiahContainer');
+        let isCardOpen = false;
+
+        btnHadiah.addEventListener('click', function() {
+            isCardOpen = !isCardOpen;
+            if (isCardOpen) {
+                cardContainer.classList.add('active');
+                btnHadiah.innerHTML = `
+                    <span class="icon-hadiah">🎁</span>
+                    <span>Tutup Hadiah</span>
+                    <span class="badge-hadiah">❤️</span>
+                `;
+            } else {
+                cardContainer.classList.remove('active');
+                btnHadiah.innerHTML = `
+                    <span class="icon-hadiah">🎁</span>
+                    <span>Kirim Hadiah</span>
+                    <span class="badge-hadiah">❤️</span>
+                `;
+            }
+        });
+
+        // ===== COPY REKENING =====
+        function copyRekening(button, rekening) {
+            navigator.clipboard.writeText(rekening).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✅ Tersalin!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                alert('Salin manual: ' + rekening);
+            });
+        }
+
+        document.querySelectorAll('.copy-rek').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const rekening = this.getAttribute('data-rek');
+                copyRekening(this, rekening);
+            });
+        });
 
         // ===== FORM UCAPAN =====
         const formUcapan = document.getElementById('formUcapan');
@@ -1147,7 +2309,6 @@
         const isiUcapan = document.getElementById('isiUcapan');
         const daftarUcapan = document.getElementById('daftarUcapan');
 
-        // Load ucapan dari localStorage
         function loadUcapan() {
             const saved = localStorage.getItem('ucapanPernikahan');
             if (saved) {
@@ -1158,7 +2319,6 @@
                     renderUcapan([]);
                 }
             } else {
-                // Data default jika belum ada
                 const defaultUcapan = [
                     {
                         nama: 'Ahmad Fauzi',
@@ -1176,7 +2336,6 @@
             }
         }
 
-        // Render ucapan
         function renderUcapan(ucapanList) {
             if (!ucapanList || ucapanList.length === 0) {
                 daftarUcapan.innerHTML = `
@@ -1187,14 +2346,11 @@
                 `;
                 return;
             }
-
-            // Tampilkan terbaru di atas
             const reversed = [...ucapanList].reverse();
             daftarUcapan.innerHTML = reversed.map((ucapan, index) => {
-                // Ambil inisial untuk badge
                 const inisial = ucapan.nama.charAt(0).toUpperCase();
                 return `
-                    <div class="ucapan-item" style="animation-delay: ${index * 0.05}s">
+                    <div class="ucapan-item" style="animation-delay: ${index * 0.08}s">
                         <div class="nama-ucapan">
                             <span class="badge-tamu">${inisial}</span>
                             ${ucapan.nama}
@@ -1206,22 +2362,16 @@
             }).join('');
         }
 
-        // Kirim ucapan
         formUcapan.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const nama = namaTamu.value.trim();
             const isi = isiUcapan.value.trim();
-            
             if (!nama || !isi) {
                 alert('Silakan isi nama dan ucapan Anda.');
                 return;
             }
-
-            // Simpan ke localStorage
             const saved = localStorage.getItem('ucapanPernikahan');
             let ucapanList = saved ? JSON.parse(saved) : [];
-            
             const newUcapan = {
                 nama: nama,
                 isi: isi,
@@ -1233,22 +2383,14 @@
                     minute: '2-digit'
                 })
             };
-            
             ucapanList.push(newUcapan);
             localStorage.setItem('ucapanPernikahan', JSON.stringify(ucapanList));
-            
-            // Render ulang
             renderUcapan(ucapanList);
-            
-            // Reset form
             namaTamu.value = '';
             isiUcapan.value = '';
-            
-            // Scroll ke daftar ucapan
             daftarUcapan.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
-        // Load ucapan saat halaman dimuat
         loadUcapan();
     });
 </script>
